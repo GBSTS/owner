@@ -1,0 +1,48 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>学校管理系统-校级用户审核</title>
+		<link rel="stylesheet" href="../../static/plugin/layui/css/layui.css" th:href="@{/plugin/layui/css/layui.css}">
+
+	</head>
+	<body class="layui-layout-body">
+		
+		<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+		  <ul class="layui-tab-title">
+		    <li class="layui-this" onclick="document.getElementById('id1').setAttribute('class','layui-tab-item layui-show');
+			document.getElementById('id2').setAttribute('class','layui-tab-item');">审批申请</li>
+		    <li onclick="document.getElementById('id2').setAttribute('class','layui-tab-item layui-show');
+			document.getElementById('id1').setAttribute('class','layui-tab-item');">历史审批</li>
+		  </ul>
+		  <div id="id1" class="layui-tab-item layui-show">
+			  <table class="layui-hide tableclass" id="test" lay-filter="test"></table>
+		  </div>
+		  <div id="id2" class="layui-tab-item">
+			  <table class="layui-hide tableclass" id="test2" style="height: auto;white-space: normal;" lay-filter="test2"></table>
+		  </div>
+		</div>
+		
+
+		
+
+		<script type="text/html" id="toolbarDemo">
+			<div class="layui-btn-container">
+		    <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">选中数目</button>
+		    <button class="layui-btn layui-btn-sm" lay-event="isAll">是否全选</button>
+		    <button class="layui-btn layui-btn-normal layui-btn-sm" lay-event="rejectApply">驳回申请</button>
+		    <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="approved">审核通过</button>
+		  </div>
+		</script>
+
+		<script type="text/html" id="barDemo">
+			<a class="layui-btn layui-btn-info layui-btn-xs" lay-event="details">详细内容</a>
+			<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="rejectApply">驳回申请</a>
+			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="approved">审核通过</a>
+		</script>
+
+		<script src="../../static/plugin/layui/layui.js" th:src="@{/plugin/layui/layui.js}"></script>
+		<script src="../../static/js/mashooluserver.js" th:src="@{/js/mashooluserver.js}"></script>
+	</body>
+</html>

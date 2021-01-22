@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人咨询</title>
+    <link rel="stylesheet" href="../../static/plugin/layui/css/layui.css">
+</head>
+
+<body>
+    <div class="layim-chat-box" style="margin: 220px 50px 0 150px">
+        <div class="layim-chat layim-chat-friend layui-show">
+            <div class="layui-unselect layim-chat-title">
+                <div class="layim-chat-other"><span class="layim-chat-username" layim-event="">后台客服</span>
+                    <p class="layim-chat-status"></p>
+                </div>
+            </div>
+            <div class="layim-chat-textarea"><textarea width="1200px" height="500px"></textarea></div>
+            <div class="layim-chat-main">
+                <ul></ul>
+            </div>
+            <div class="layim-chat-footer">
+                <div class="layui-unselect layim-chat-tool"
+                    data-json="%7B%22name%22%3A%22%E5%B0%8F%E9%97%B2%22%2C%22type%22%3A%22friend%22%2C%22avatar%22%3A%22%2F%2Ftva3.sinaimg.cn%2Fcrop.0.0.180.180.180%2F7f5f6861jw1e8qgp5bmzyj2050050aa8.jpg%22%2C%22id%22%3A1008612%7D">
+                    <span class="layui-icon layim-tool-face" title="选择表情" layim-event="face"></span><span
+                        class="layui-icon layim-tool-image" title="上传图片" layim-event="image"><input type="file"
+                            name="file"></span><span class="layui-icon layim-tool-image" title="发送文件"
+                        layim-event="image" data-type="file"><input type="file" name="file"></span><span
+                        class="layui-icon layim-tool-audio" title="发送网络音频" layim-event="media"
+                        data-type="audio"></span><span class="layui-icon layim-tool-video" title="发送网络视频"
+                        layim-event="media" data-type="video"></span><span class="layui-icon layim-tool-code"
+                        title="代码" layim-event="extend" lay-filter="code"></span><span class="layim-tool-log"
+                        layim-event="chatLog"><i class="layui-icon"></i>聊天记录</span></div>
+                <div class="layim-chat-textarea"><textarea width="1200px" height="500px"></textarea></div>
+                <div class="layim-chat-bottom">
+                    <div class="layim-chat-send"><span class="layim-send-close"
+                            layim-event="closeThisChat">关闭</span><span class="layim-send-btn"
+                            layim-event="send">发送</span><span class="layim-send-set" layim-event="setSend"
+                            lay-type="show"><em class="layui-edge"></em></span>
+                        <ul class="layui-anim layim-menu-box">
+                            <li class="layim-this" layim-event="setSend" lay-type="Enter"><i
+                                    class="layui-icon"></i>按Enter键发送消息</li>
+                            <li layim-event="setSend" lay-type="Ctrl+Enter"><i class="layui-icon"></i>按Ctrl+Enter键发送消息
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

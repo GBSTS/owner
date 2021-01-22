@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>教师资料管理</title>
+    <link rel="stylesheet" href="../../static/plugin/layui/css/layui.css">
+
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">教师基本信息</div>
+
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item"><a href="basicinfo.html">基本信息</a></li>
+                <li class="layui-nav-item"><a href="post.html">岗位聘任</a></li>
+                <li class="layui-nav-item"><a href="profession.html">专业技术职务聘任</a></li>
+                <li class="layui-nav-item"><a href="awards.html">教学科研成果及获奖</a></li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+
+        <form class="layui-form" action="">
+            <div style="padding: 15px;" class=" layui-form-item ">
+                <table class="layui-table">
+                    <thead>
+                    <tr>
+                        <th colspan="2">
+                            <blockquote class="layui-elem-quote" style="font-size: large">专业技术职务职务</blockquote>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+
+                        <td class="layui-input-block"> 聘任专业技术职务：
+                            <select name="city" lay-verify="required">
+                                <option value="">请选择</option>
+                                <option value="0">中等专业学校教师</option>
+                                <option value="0">高级讲师</option>
+                                <option value="0">讲师</option>
+                                <option value="0">助理教师</option>
+                                <option value="0">教员</option>
+                                <option value="0">中小学教师</option>
+                                <option value="0">高级教师</option>
+                                <option value="0">一级教师</option>
+                                <option value="0">二级教师</option>
+                                <option value="0">三级教师</option>
+                            </select>
+                        </td>
+                        <td class="layui-input-block">
+                            聘任开始年月：
+                            <input type="text" class="layui-input" id="test2">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="layui-input-block">
+                            聘任结束年月：
+                            <input type="text" class="layui-input" id="test2" >
+                        </td>
+                        <td class="layui-input-block">聘任单位名称：：
+                            <input type="text" name="title" required  lay-verify="required" placeholder="请输入全称" autocomplete="off" class="layui-input">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="layui-input-block" align="center">
+                <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+
+        </form>
+    </div>
+
+
+</div>
+<script src="../../static/plugin/layui/layui.js"></script>
+
+<script src="../../static/js/profession.js"></script>
+
+</body>
+</html>

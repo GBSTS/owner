@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.itmasys.dao.RightsMapper">
+    <resultMap id="BaseResultMap" type="com.example.itmasys.entity.Rights">
+        <result column="rightid" property="rightid" />
+        <result column="url" property="url" />
+        <result column="rolenames" property="rolenames" />
+    </resultMap>
+
+    <!-- 表字段 -->
+    <sql id="baseColumns">
+         t.rightid
+        , t.url
+        , t.rolenames
+        </sql>
+
+    <select id="selectAllRigths" resultMap="BaseResultMap">
+        SELECT
+        <include refid="baseColumns" />
+        FROM rights t
+    </select>
+
+</mapper>

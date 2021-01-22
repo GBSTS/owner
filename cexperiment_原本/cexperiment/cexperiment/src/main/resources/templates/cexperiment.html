@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>课程班-实验课</title>
+	
+	<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"  th:href="@{/css/bootstrap.min.css}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,700" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/jquery-ui.min.css"  th:href="@{/css/jquery-ui.min.css}">
+    <link rel="stylesheet" href="../static/css/fileinput.css" th:href="@{/css/fileinput.css}">
+	<link rel="stylesheet" type="text/css" href="../static/css/styles.css"  th:href="@{/css/styles.css}">
+
+
+</head>
+
+<body>
+    <!-- Backgrounds -->
+    <div id="login-bg" class="container-fluid">
+
+      <div class="bg-success">{{cname}}  <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo">详情</button>  </div>
+      <div class="bg-img collapse show" id="demo" >
+		  <div v-html="ceintro"   style="word-wrap:break-word;"  > </div>
+	  </div>
+      <div class="bg        -color"></div>
+    </div>
+
+    <!-- End Backgrounds -->
+
+    <div class="ui-widget-content" id="opsdrag">
+          sfsdafdsfsdafdsfsd
+            <br >
+        <div>
+            <form enctype="multipart/form-data">
+                <div class="form-group center-block" >
+                    <input id="test1" name="file" type="file" class="file" data-browse-on-zone-click="true">
+                </div>
+            </form>
+        </div>
+    </div>
+	
+	
+	
+    <script src="../static/js/jquery.min.js"   th:src="@{/js/jquery.min.js}" ></script>
+    <script src="../static/js/jquery-ui.min.js" th:src="@{/js/jquery-ui.min.js}"></script>
+    <script src="../static/js/bootstrap.min.js"  th:src="@{/js/bootstrap.min.js}" ></script>
+    <script src="../static/js/vue.min.js"  th:src="@{/js/vue.min.js}" ></script>
+    <script  src="../static/js/fileinput.js" th:src="@{/js/fileinput.js}"></script>
+    <script  src="../static/js/theme.js" th:src="@{/js/theme.js}"></script>
+    <script  src="../static/js/zh.js" th:src="@{/js/zh.js}"></script>
+    <script src="../static/js/initFileInput.js"  th:src="@{/js/initFileInput.js}"></script>
+
+    <script src="../static/js/cexperimentnode.js"  th:src="@{/js/cexperimentnode.js}"></script>
+
+
+
+</body>
+</html>

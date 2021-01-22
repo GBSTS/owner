@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.itmasys.dao.VerificationcodeDao">
+    <resultMap id="BaseResultMap" type="com.example.itmasys.entity.Verificationcode">
+        <result column="id" property="id" />
+        <result column="email" property="email" />
+        <result column="code" property="code" />
+        <result column="createdate" property="createdate" />
+    </resultMap>
+
+    <!-- 表字段 -->
+    <sql id="baseColumns">
+         t.id
+        , t.email
+        , t.code
+        , t.createdate
+        </sql>
+
+    <!-- 查询全部 -->
+    <select id="listAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="baseColumns" />
+        FROM verificationcode t
+    </select>
+
+    <!-- 根据主键获取单条记录 -->
+    <select id="getById" resultMap="BaseResultMap" parameterType="Integer">
+        SELECT
+        <include refid="baseColumns" />
+        FROM verificationcode t
+        WHERE id = #{id}
+    </select>
+
+    <!-- 根据email,code,nowdate获取单条记录 -->
+    <select id="getByEamilAndCodeAndNowdate" resultMap="BaseResultMap" parameterType="com.example.itmasys.entity.Verificationcode">
+        SELECT
+        <include refid="baseColumns" />
+        FROM verificationcode t
+        WHERE email = #{email} and code = #{code} and 300 >= #{createdate} - createdate
+    </select>
+
+    <!-- 插入全部字段 -->
+    <insert id="insert" parameterType="com.example.itmasys.entity.Verificationcode"
+            keyProperty="id" keyColumn="id" useGeneratedKeys="true"
+    >
+        INSERT INTO verificationcode
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            email,
+            code,
+            createdate,
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            #{email},
+            #{code},
+            #{createdate},
+        </trim>
+    </insert>
+
+    <!-- 插入不为NULL的字段 -->
+    <insert id="insertIgnoreNull" parameterType="com.example.itmasys.entity.Verificationcode"
+            keyProperty="id" keyColumn="id" useGeneratedKeys="true"
+    >
+        INSERT INTO verificationcode
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="email != null">
+                email,
+            </if>
+            <if test="code != null">
+                code,
+            </if>
+            <if test="createdate != null">
+                createdate,
+            </if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="email != null" >
+                #{email},
+            </if>
+            <if test="code != null" >
+                #{code},
+            </if>
+            <if test="createdate != null" >
+                #{createdate},
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新,更新全部字段 -->
+    <update id="update" parameterType="com.example.itmasys.entity.Verificationcode">
+        UPDATE verificationcode
+        <set>
+            email=#{email},
+            code=#{code},
+            createdate=#{createdate},
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <!-- 更新不为NULL的字段 -->
+    <update id="updateIgnoreNull" parameterType="com.example.itmasys.entity.Verificationcode">
+        UPDATE verificationcode
+        <set>
+            <if test="email != null" >
+                email=#{email},
+            </if>
+            <if test="code != null" >
+                code=#{code},
+            </if>
+            <if test="createdate != null" >
+                createdate=#{createdate},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <!-- 根据主键删除记录 -->
+    <delete id="delete" parameterType="com.example.itmasys.entity.Verificationcode">
+		DELETE FROM verificationcode
+		WHERE id = #{id}
+	</delete>
+
+
+</mapper>

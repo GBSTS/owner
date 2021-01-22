@@ -1,0 +1,126 @@
+{
+	"code": 0,
+	"msg": "",
+	"data": [
+		{
+		"imgUrl": "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1578364952,3440871037&fm=26&gp=0.jpg",
+		"productId": "1",
+		"productName": "dssssssssssssssssdsa",
+		"productLocal": "c",
+		"productValue": "e",
+		"productUnit":"500g",
+		"expectedMatureDate": "2001-12-11",
+		"shelvesDate": "2002-01-10",
+		"productIntroduction": "ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"
+	}, {
+		"imgUrl": "/img/2034043.jpg",
+		"productId": "2",
+		"productName": "d",
+		"productLocal": "c",
+		"productValue": "e",
+		"productUnit":"500g",
+		"expectedMatureDate": "2001-12-11",
+		"shelvesDate": "2002-01-10",
+		"productIntroduction": "sss"
+	}, {
+		"imgUrl": "/img/2034043.jpg",
+		"productId": "3",
+		"productName": "d",
+		"productLocal": "c",
+		"productValue": "e",
+		"productUnit":"500g",
+		"expectedMatureDate": "2001-12-11",
+		"shelvesDate": "2002-01-10",
+		"productIntroduction": "sss"
+	}, {
+		"imgUrl": "/img/2034043.jpg",
+		"productId": "4",
+		"productName": "d",
+		"productLocal": "c",
+		"productValue": "e",
+		"productUnit":"500g",
+		"expectedMatureDate": "2001-12-11",
+		"shelvesDate": "2002-01-10",
+		"productIntroduction": "sss"
+	}, {
+		"imgUrl": "/img/2034043.jpg",
+		"productId": "5",
+		"productName": "d",
+		"productLocal": "c",
+		"productValue": "e",
+		"productUnit":"500g",
+		"expectedMatureDate": "2001-12-11",
+		"shelvesDate": "2002-01-10",
+		"productIntroduction": "sss"
+	}, {
+		"imgUrl": "/img/2034043.jpg",
+		"productId": "6",
+		"productName": "d",
+		"productLocal": "c",
+		"productValue": "e",
+		"productUnit":"500g",
+		"expectedMatureDate": "2001-12-11",
+		"shelvesDate": "2002-01-10",
+		"productIntroduction": "sss"
+	}, {
+		"imgUrl": "/img/2034043.jpg",
+		"productId": "7",
+		"productName": "d",
+		"productLocal": "c",
+		"productValue": "e",
+		"productUnit":"500g",
+		"expectedMatureDate": "2001-12-11",
+		"shelvesDate": "2002-01-10",
+		"productIntroduction": "sss"
+	}, {
+		"imgUrl": "/img/2034043.jpg",
+		"productId": "8",
+		"productName": "d",
+		"productLocal": "c",
+		"productValue": "e",
+		"productUnit":"500g",
+		"expectedMatureDate": "2001-12-11",
+		"shelvesDate": "2002-01-10",
+		"productIntroduction": "sss"
+	}, {
+		"imgUrl": "/img/2034043.jpg",
+		"productId": "9",
+		"productName": "d",
+		"productLocal": "c",
+		"productValue": "e",
+		"productUnit":"500g",
+		"expectedMatureDate": "2001-12-11",
+		"shelvesDate": "2002-01-10",
+		"productIntroduction": "sss"
+	}, {
+		"imgUrl": "/img/2034043.jpg",
+		"productId": "0",
+		"productName": "d",
+		"productLocal": "c",
+		"productValue": "e",
+		"productUnit":"500g",
+		"expectedMatureDate": "2001-12-11",
+		"shelvesDate": "2002-01-10",
+		"productIntroduction": "sss"
+	}, {
+		"imgUrl": "/img/2034043.jpg",
+		"productId": "11",
+		"productName": "d",
+		"productLocal": "c",
+		"productValue": "e",
+		"productUnit":"500g",
+		"expectedMatureDate": "2001-12-11",
+		"shelvesDate": "2002-01-10",
+		"productIntroduction": "sss"
+	}, {
+		"imgUrl": "/img/2034043.jpg",
+		"productId": "12",
+		"productName": "d",
+		"productLocal": "c",
+		"productValue": "e",
+		"productUnit":"500g",
+		"expectedMatureDate": "2001-12-11",
+		"shelvesDate": "2002-01-10",
+		"productIntroduction": "sss"
+	}]
+}

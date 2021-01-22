@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+		<title>Title</title>
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+			}
+		</style>
+	</head>
+	<body style="background-color: #d1d1d1;">
+		<label id="nowDate" style="float: right; margin-right: 55px; margin-top: 5px;"></label>
+	</body>
+	<script type="text/javascript">
+		var inputid = document.getElementById("nowDate");
+
+		function showtime() {
+			var now_time = new Date(); //创建时间对象的实例
+			var years = now_time.getFullYear();
+			var months = now_time.getMonth()+1;
+			var days = now_time.getDate();
+			var weekDays = now_time.getDay();
+			var hours = now_time.getHours(); //获得当前小时数
+			var minutes = now_time.getMinutes(); //获得当前分钟数
+			var seconds = now_time.getSeconds(); //获得当前秒数
+			var weeks = "";
+			switch (weekDays) {
+				case 0:
+					weeks = "星期日";
+					break;
+				case 1:
+					weeks = "星期一";
+					break;
+				case 2:
+					weeks = "星期二";
+					break;
+				case 3:
+					weeks = "星期三";
+					break;
+				case 4:
+					weeks = "星期四";
+					break;
+				case 5:
+					weeks = "星期五";
+					break;
+				case 6:
+					weeks = "星期六";
+					break;
+			}
+			timer = years;
+			if (String(months).length < 2)
+				timer += ("-0" + months);
+			else
+				timer += ("-" + months);
+			if (String(days).length < 2)
+				timer += ("-0" + days);
+			else
+				timer += ("-" + days);
+			if (String(hours).length < 2)
+				timer += (" 0" + hours);
+			else
+				timer += (" " + hours);
+			if (String(minutes).length < 2)
+				timer += (":0" + minutes);
+			else
+				timer += (":" + minutes);
+			if (String(seconds).length < 2)
+				timer += (":0" + seconds);
+			else
+				timer += (":" + seconds);
+			timer += ("   " + weeks)
+			inputid.innerText = timer
+			setTimeout("showtime()", 1000); //设置每隔一秒钟自动调用一次showtime()函数
+
+		}
+
+		window.οnlοad = showtime()
+	</script>
+</html>

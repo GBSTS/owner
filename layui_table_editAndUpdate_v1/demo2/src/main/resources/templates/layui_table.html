@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>练习</title>
+    <link rel="stylesheet" href="../static/plugin/layui/css/layui.css" th:href="@{/plugin/layui/css/layui.css}" >
+</head>
+<body>
+
+    <table id="demo" lay-filter="test"></table>
+
+
+    <script type="text/html" id="toolbarDemo">
+        <div class="layui-btn-container">
+            <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="delRow">Delete Row</button>
+            <button class="layui-btn layui-btn-sm layui-btn-warm" lay-event="update">Update All</button>
+            <button class="layui-btn layui-btn-sm" lay-event="addRow">Add One Row</button>
+            <button class="layui-btn layui-btn-sm" lay-event="addMoreRow">Add More Row</button>
+        </div>
+    </script>
+
+    <script src="../static/plugin/layui/layui.js" th:src="@{/plugin/layui/layui.js}"></script>
+    <script src="../static/js/layui_table.js" th:src="@{/js/layui_table.js}"></script>
+</body>
+</html>

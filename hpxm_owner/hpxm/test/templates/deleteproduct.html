@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+		<title>Title</title>
+
+		<!--<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">-->
+		<!--<script src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>-->
+		<!--<script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>-->
+
+		<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../static/css/html/deleteproduct.css">
+	</head>
+	<body>
+		<div id="selectParam">
+			<div>
+				<label for="productId">商品编号：</label>
+				<input type="text" id="productId" name="productId" V-model="productId" style="width: 125px;">
+			</div>
+			<div>
+				<label for="productName">商品名：</label>
+				<input type="text" id="productName" name="productName" V-model="productName" style="width: 125px;">
+			</div>
+			<div>
+				<label for="productValueStart">价格：</label>
+				<input type="text" id="productValueStart" name="productValueStart" V-model="productValueStart" style="width: 50px;"><span>￥</span>-
+				<input type="text" id="productValueEnd" name="productValueEnd" V-model="productValueEnd" style="width: 50px;"><span>￥</span>
+			</div>
+			<div>
+				<label for="productLocal">生产产地：</label>
+				<input type="text" id="productLocal" name="productLocal" V-model="productLocal" style="width: 250px;">
+			</div>
+			<div>
+				<label for="expectedMatureDateStart">预计成熟日期：</label>
+				<input type="date" id="expectedMatureDateStart" name="expectedMatureDateStart" V-model="expectedMatureDateStart"
+				 style="width: 125px;">-
+				<input type="date" id="expectedMatureDateEnd" name="expectedMatureDateEnd" V-model="expectedMatureDateEnd" style="width: 125px;">
+			</div>
+			<button type="button">查询</button>
+		</div>
+		<div id="endPage">
+			<div id="btnGroup">
+				<button type="button" @click="selectAll()">全选</button>
+				<button type="button" @click="selectOppsite()">反选</button>
+				<button type="button">提交删除</button>
+			</div>
+			<div id="productShow">
+				<div id="windowFrame" v-for="(obj,i) in nowObjs">
+					<input type="checkbox" style="position: absolute; left: -40px; top: 0px; width: 50px;" v-model="selectArr[(nowPage-1)*pageNum+i].selectable" />
+					<div class="productWindow">
+						<div style="width: 150px;">
+							<img :src="obj.imgUrl" style="width: 150px; height:180px; display: inline-block;" />
+						</div>
+						<div style="width: 70%; margin-left: 3%;">
+							<div>
+								<label>商品编号：</label>
+								<input type="text" name="productId" V-model="obj.productId" style="width: 120px;" disabled>
+							</div>
+							<div>
+								<label>商品名：</label>
+								<input type="text" name="productName" V-model="obj.productName" style="width: 120px;" disabled>
+							</div>
+							<div>
+								<label>单价：</label>
+								<input type="text" name="productValue" V-model="obj.productValue" style="width: 55px;" disabled>
+								<span>￥</span>
+							</div>
+							<div>
+								<label>生产产地：</label>
+								<input type="text" name="productLocal" V-model="obj.productLocal" style="width: 250px;" disabled>
+							</div>
+							<div>
+								<label>预计成熟日期：</label>
+								<input type="date" name="expectedMatureDate" V-model="obj.expectedMatureDate" style="width: 125px;" disabled>
+							</div>
+							<div style="position: relative; display: block; margin-bottom: 70px;">
+								<label>产品介绍：</label>
+								<textarea name="productIntroduction" V-model="obj.productIntroduction" style="position:absolute; top: 0px; width: 350px; height: 90px; resize:none;" disabled></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="pageSelect">
+				<button type="button" name="firstPage" @click="firstBtn()">首页</button>
+				<button type="button" name="previousPage" @click="previousBtn()">上一页</button>
+				<input type="text" style="width: 35px; text-align: center;" v-model="nowPage" />
+				<button type="button" nmae="nextPage" @click="nextBtn()">下一页</button>
+				<button type="button" name="lastPage" @click="lastBtn()">尾页</button>
+			</div>
+		</div>
+
+		<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+		<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+		<script src="../static/js/html/deleteproduct.js"></script>
+	</body>
+</html>

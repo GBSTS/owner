@@ -1,0 +1,16 @@
+.warp {
+    margin: 20px auto;
+    width: 90%;
+}
+
+.title1 {
+    margin: 0 20px;
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+.title2 {
+    margin-top: 5px;
+    padding: 0 20px;
+    font-size: 15px;
+}

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>签到</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+		body{
+			background:url("../static/img/2020.jpg");
+		}
+        .container {
+            width: 1000px;
+            max-height: 100vh;
+            background:#00000060;
+            margin: 0 auto;
+        }
+        .container .content {
+            padding: 20px 20px 0 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .container .message {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+            height: 200px;
+            align-items: flex-end;
+        }
+        .container .enterMsg {
+            width: 76%;
+            height: 180px;
+            font-size: 18px;
+            padding: 10px 2%;
+            line-height: 26px;
+			border-radius:10px;
+        }
+        .container .sendMsg {
+            width: 15%;
+            height: 60px;
+			color:#FFFFFF;
+            line-height: 60px;
+            display: inline-block;
+            font-size: 18px;
+            cursor: pointer;
+            text-align: center;
+            background: lightcoral;
+			border-radius:10px;
+			background-image:linear-gradient(to right,#b8cbb8 0,#b8cbb8 0%,#b465da 100%,#cf6cc9 33%,#ee609c 66%,#ee609c 100%);
+        }
+        .container .msgs {
+            margin-top: 20px;
+            height: calc(100vh - 270px);
+            background: #FFFFBB;
+            overflow: auto;
+            border-radius: 6px;
+            padding: 10px 2%;
+        }
+        .container .msgs h3 {
+            margin-bottom: 25px;
+        }
+        .container .msgList {
+            max-height: calc(100vh - 380px);
+            overflow: auto;
+        }
+        .container .singleMsg {
+            border-bottom: thin solid #ccc;
+            padding: 15px 0 15px 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .container .singleMsg .delete {
+            color: #999;
+            cursor: pointer;
+        }
+        .container .singleMsg .delete:hover {
+            text-decoration: underline;
+        }
+        .container .total {
+            text-align: right;
+            height: 60px;
+            line-height: 60px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="content">
+        <div class="message">
+            <textarea name="msg" id="enterMsg" class="enterMsg" placeholder="请输入学号和姓名"></textarea>
+            <span id="sendMsg" class="sendMsg">签到</span>
+        </div>
+        <div class="msgs">
+            <h3>签到人数</h3>
+            <div class="msgList" id="messageList">
+                <div class="singleMsg">
+                    <p>以上是全部签到人数。</p>
+                </div>
+            </div>
+            <div class="total">总共有 <span id="votes">0</span>进行签到</div>
+        </div>
+    </div>
+</div>
+
+<script>
+	//全屏显示
+    var maxH = document.documentElement.clientHeight;    
+    var container = document.querySelector('.container');
+    container.style.height = maxH + 'px';
+
+    //留言
+    var enterMsg = document.getElementById('enterMsg');
+    var sendMsg = document.getElementById('sendMsg');
+    var msgList = document.getElementById('messageList');
+    var votes = 0; //初始化留言总数
+
+    sendMsg.onclick = function(e){
+        var msg = enterMsg.value;
+        if(msg === ''){
+            alert('您还没有输入内容哦！');
+            return;
+        }//不能输入空值
+        new createDiv(msg, msgList);
+        votes ++;
+        enterMsg.value = '';//把enterMsg的value值保存下来后，msg与enterMsg没有关系
+        document.getElementById('votes').innerHTML = votes;
+    };
+
+    function createDiv(obj, el){
+        this.div = document.createElement('div');
+        this.div.className = 'singleMsg';
+        this.p1 = document.createElement('p');
+        this.p1.innerHTML = obj;
+        this.p2 = document.createElement('p');
+        this.p2.className = 'delete';
+        this.p2.innerHTML = '签退';
+        this.div.appendChild(this.p1);
+        this.div.appendChild(this.p2);
+        el.insertBefore(this.div, el.childNodes[0]);
+
+        var that = this;
+        this.p2.onclick = function(){
+            that.div.remove();
+            if(votes <= 0){
+                votes = 0;
+            }
+            votes --;
+            document.getElementById('votes').innerHTML = votes;
+        };
+    }
+</script>
+
+</body>
+</html>

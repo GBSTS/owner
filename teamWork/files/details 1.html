@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>签到</title>
+<link rel="stylesheet" type="text/css" href="../static/img/public.css" />
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+	//给按钮signin绑定单击事件，实现签到功能
+	$(function(){
+		$("#signin").click(function(){
+			//alert("ok");
+			//发送ajax请求，完成签到.并通过回调函数显示结果
+			$.ajax({
+				url:"duty?method=signin",
+				type:"post",
+				dataType:"text",
+				success:function(data){
+					//显示签到结果
+					if(data==0){
+						$("#result").html("签到失败");
+					}else if (data==1) {
+						$("#result").html("签到成功");
+					}else {
+						$("#result").html("已经签到，无需重复签到");
+					}
+				}
+			});
+		});
+		
+		//给按钮signout绑定单击事件，实现签退
+		$("#signout").click(function(){
+			//alert("ok?");
+			$.ajax({
+				url:"duty?method=signout",
+				type:"post",
+				dataType:"text",
+				success:function(result){
+					$("#result").html(result);
+				}
+			});
+		});
+		
+	});
+	
+</script>
+</head>
+<style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+ 
+		#main{
+		width:100%;
+		height:600px;
+		margin-top:0px;
+		padding-top:0px;
+		}
+        
+        #orderBox {
+            width: 960px;
+            height: 620px;
+            margin: 50px auto;
+			background-color:#00000060;
+			border-radius:10px;
+        }
+ 
+    </style>
+</head>
+<body>
+<div id="top" class="auto">
+	<div class="nav">	
+	<div class="mainNav">
+			 
+    <ul class="placeul">
+	<li><a href="#">位置</a></li>
+    <li><a href="message1.html">考勤管理</a></li>
+    <li><a href="message1.html">签到签退</a></li>
+    </ul>
+		</div>	
+	</div>
+
+</div>
+	<div id="main">
+		<div id="orderBox"> 
+		<div class="formbody">
+    
+    <div class="formtitle"><li>基本信息</li></div>
+    
+    <ul class="forminfo">
+    	<li><label>&nbsp;</label><a href="message1.html"><input name="signinTime" type="button" class="btn"  id="signin" value="签到"/></a> 每天签到一次，不可重复签到</li>
+        <li><label>&nbsp;</label></li>
+    	<li><label>&nbsp;</label></li>
+      	<li><label>&nbsp;</label><input name="signoutTime" type="button" class="btn" id="signout" value="签退"/>可重复签退，以最后一次签退为准</li>
+    </ul>
+
+    </div>
+	<div id="result"></div>
+		</div>
+	</div>
+
+
+	
+    
+  
+</body>
+
+</html>

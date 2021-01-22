@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>课程班-实验课</title>
+
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css"  th:href="@{/css/bootstrap.css}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,700" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/jquery-ui.min.css"  th:href="@{/css/jquery-ui.min.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css"  th:href="@{/css/styles.css}">
+
+
+</head>
+
+<body>
+<!-- Backgrounds -->
+<div id="login-bg" class="container-fluid">
+
+    <div class="bg-success">{{cname}}  <button  type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo" v-show="mbtnshow">详情</button>  </div>
+    <div class="bg-img collapse show" id="demo" >
+        <div v-html="ceintro"   style="word-wrap:break-word;"  > </div>
+    </div>
+    <div class="bg-color">
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        本次实验的实验手册
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse">
+                    <div class="panel-body">
+                        Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
+                        nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
+                        lomo.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion"
+                           href="#collapseOne">
+                            本次实验的相关源代码
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
+                        nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
+                        lomo.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion"
+                           href="#collapseTwo">
+                            本次实验的相关图片
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
+                        nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
+                        lomo.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        本次实验的相关附件
+                    </h4>
+                </div>
+                <div id="collapseFour" class="panel-collapse">
+                    <div class="panel-body">
+                        Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
+                        nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
+                        lomo.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+<!-- End Backgrounds -->
+
+
+
+
+<script src="../static/js/jquery.min.js"   th:src="@{/js/jquery.min.js}" ></script>
+<script src="../static/js/jquery-ui.min.js" th:src="@{/js/jquery-ui.min.js}"></script>
+<script src="../static/js/bootstrap.js"  th:src="@{/js/bootstrap.js}" ></script>
+<script src="../static/js/vue.js"  th:src="@{/js/vue.js}" ></script>
+
+<script src="../static/js/cexperimentnode.js"  th:src="@{/js/cexperimentnode.js}"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<script>
+	//课程名称coursename
+	var coursename="HTML应用开发";
+	//课程实验介绍
+	var cei="<p>    <strong><span style='font-family: 黑体;font-family:黑体'>实验目的：</span></strong><br/></p>"
+	    + "<p>    <strong></strong></p>"
+	    + "<p style='margin-left: 56px;line-height: 22px'>"
+	    + "<span style='font-family: 宋体;font-size: 16px'>1、&nbsp;</span><span style='font-family: 宋体;font-size: 16pxfont-family:宋体'>学习掌握</span>"
+	    + "		<span style='font-family: 宋体;font-size: 16px'>Dreamweaver CS6网页设计工具</span><span style='font-family: 宋体;font-size: 16pxfont-family:宋体'>；</span></p>"
+	    + "<p style='margin-left: 56px;line-height: 22px'>"
+	    + " <span style='font-family: 宋体;font-size: 16px'>2、&nbsp;</span><span style='font-family: 宋体;font-size: 16pxfont-family:宋体'>学习掌握</span>"
+	    + "	<span style='font-family: 宋体;font-size: 16px'>DIV+CSS+JS网页的代码级结构</span><span style='font-family: 宋体;font-size: 16pxfont-family:宋体'>；</span></p>"
+	    + "<p style='margin-left: 56px;line-height: 22px'>"
+	    + "    <span style='font-family: 宋体;font-size: 16px'>3、&nbsp;</span><span style='font-family: 宋体;font-size: 16pxfont-family:宋体'>学习掌握</span>"
+	    + "<span style='font-family: 宋体;font-size: 16px'><span style='font-family:宋体'>并灵活使用</span>CSS设计网页；</span></p>"
+	    + "<p style='margin-left: 56px;line-height: 22px'>"
+	    + "    <span style='font-family: 宋体;font-size: 16px'>4、&nbsp;</span><span style='font-family: 宋体;font-size: 16px'>"
+	    + "<span style='font-family:宋体'>学习掌握</span>JavaScript之事件调用</span><span style='font-family: 宋体;font-size: 16pxfont-family:宋体'>。</span></p>"
+	    + "<p style='margin-left: 32px;line-height: 22px'>"
+	    + "    <span style='font-family: 宋体;font-size: 16px'>&nbsp;</span></p>"
+	    + "<p><strong><span style='font-family: 黑体;font-size: 16pxfont-family:黑体'>实验要求：</span></strong><strong></strong></p>"
+	    + "<p style='margin-left: 56px;line-height: 22px'>"
+	    + "    <span style='font-family: 宋体;font-size: 16px'>1、&nbsp;</span><span style='font-family: 宋体;font-size: 16pxfont-family:宋体'>能独立完成</span>"
+	    + "<span style='font-family: 宋体;font-size: 16px'><span style='font-family:宋体'>使用</span>Dreamweaver CS设计网页（DIV+CSS+JS）</span>"
+	    + "<span style='font-family: 宋体;font-size: 16pxfont-family:宋体'>；</span>"
+	    + "</p><p style='margin-left: 56px;line-height: 22px'>"
+	    + "    <span style='font-family: 宋体;font-size: 16px'>2、&nbsp;</span><span style='font-family: 宋体;font-size: 16pxfont-family:宋体'>能独立完成</span>"
+	    + "<span style='font-family: 宋体;font-size: 16px'><span style='font-family:宋体'>网页文件的</span>CSS格式设计；</span></p>"
+	    + "<p style='margin-left: 56px;line-height: 22px'>"
+	    + "    <span style='font-family: 宋体;font-size: 16px'>3、&nbsp;</span><span style='font-family: 宋体;font-size: 16px'>"
+	    + "<span style='font-family:宋体'>能独立完成对</span>JS脚本事件的处理</span><span style='font-family: 宋体;font-size: 16pxfont-family:宋体'>。</span></p>";
+	var vm = new Vue({
+	  el: '#login-bg',
+	  data: {
+		cname:coursename,    //课程名称
+		ceintro:cei          //课程实验介绍
+	  },
+	  computed: {
+
+	  }
+	})
+</script>

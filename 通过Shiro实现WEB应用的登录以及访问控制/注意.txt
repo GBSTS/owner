@@ -1,0 +1,3 @@
+​	如果项目需要特性化，只需要修改登录页面的内容或添加需要的管理页面以及后端逻辑控制，不需要修改resources>config>ehcache.xml、java>com.example.shiro>filter>*.java、java>com.example.shiro>config>ShiroConfig.java、java>com.example.shiro>shiro>MyRealm.java等文件。
+
+	如果需要修改有关授权访问的服务，就需要修改以上提到的文件内容，否则不需要修改。

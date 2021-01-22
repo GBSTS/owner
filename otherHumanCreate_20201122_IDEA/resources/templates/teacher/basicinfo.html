@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>教师资料管理</title>
+    <link rel="stylesheet" href="../../static/plugin/layui/css/layui.css">
+
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">教师基本信息</div>
+
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item"><a href="basicinfo.html">基本信息</a></li>
+                <li class="layui-nav-item"><a href="post.html">岗位聘任</a></li>
+                <li class="layui-nav-item"><a href="profession.html">专业技术职务聘任</a></li>
+                <li class="layui-nav-item"><a href="awards.html">教学科研成果及获奖</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body layui-form" action=" ">
+        <!-- 内容主体区域 -->
+        <form class="layui-form" action="">
+        <div style="padding: 15px;" class=" layui-form-item ">
+            <table class="layui-table">
+
+                <thead>
+                <tr>
+                    <th colspan="2"><blockquote class="layui-elem-quote" style="font-size: large">个人基本资料</blockquote>
+                        </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="layui-input-block">姓名：
+                        <input type="text" name="title" required  lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+                    </td>
+
+                    <td rowspan="2">
+                        <div class="layui-upload-drag" id="test10">
+                            <i class="layui-icon"></i>
+                            <p>点击或拖拽上传头像</p>
+                            <div class="layui-hide" id="uploadDemoView">
+                                <hr>
+                                <img src="" alt="上传成功后渲染" style="max-width: 200px;">
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="layui-input-block">曾用名：
+                        <input type="text" name="title" required   placeholder="请输入曾用名" autocomplete="off" class="layui-input">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="layui-input-block">性别：
+                        <input type="radio" name="sex" value="男" title="男">
+                        <input type="radio" name="sex" value="女" title="女" checked>
+                    </td>
+                    <td class="layui-input-block">
+                        出生日期：
+                        <input type="text" class="layui-input" id="test2">
+                    </td>
+
+                </tr>
+                <tr>
+                <td>籍贯：
+                    <select name="city" lay-verify="required">
+                        <option value="">请选择</option>
+                        <option value="0">广东</option>
+                        <option value="1">上海</option>
+                        <option value="2">北京</option>
+                        <option value="3">浙江</option>
+                        <option value="4">江苏</option>
+                    </select>
+                </td>
+                <td>民族：
+                    <select name="city" lay-verify="required">
+                        <option value="">请选择</option>
+                        <option value="0">汉族</option>
+                        <option value="1">满族</option>
+                        <option value="2">傣族</option>
+                        <option value="3">回族</option>
+                        <option value="4">维吾尔族</option>
+                    </select>
+                </td>
+                </tr>
+                <tr>
+                    <td class="layui-input-block">教师工号：
+                        <input type="text" name="title" required  lay-verify="required" placeholder="请输入编码" autocomplete="off" class="layui-input">
+                    </td>
+                    <td class="layui-input-block">证件号：
+                        <input type="text" name="title" required  lay-verify="required" placeholder="请输入编码" autocomplete="off" class="layui-input">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="layui-input-block">
+                        入职时间：
+                        <input type="text" class="layui-input" id="test2">
+                    </td>
+                    <td class="layui-input-block">
+                        退休时间：
+                        <input type="text" class="layui-input" id="test2">
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>是否在编：
+                        <select name="city" lay-verify="required">
+                            <option value="">请选择</option>
+                            <option value="0">是</option>
+                            <option value="0">否</option>
+                        </select>
+                    </td>
+                    <td>婚姻状况：
+                        <select name="city" lay-verify="required">
+                            <option value="">请选择</option>
+                            <option value="0">未婚</option>
+                            <option value="0">已婚</option>
+                            <option value="0">离异</option>
+                            <option value="0">丧偶</option>
+                        </select>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>教职工来源：
+                        <select name="city" lay-verify="required">
+                            <option value="">请选择</option>
+                            <option value="0">招聘</option>
+                            <option value="0">军队转业</option>
+                            <option value="0">复员</option>
+                            <option value="0">调入</option>
+                            <option value="0">引进人才</option>
+                            <option value="0">调其他</option>
+                        </select>
+                    </td>
+                    <td>政治面貌：
+                        <select name="city" lay-verify="required">
+                            <option value="">请选择</option>
+                            <option value="0">群众</option>
+                            <option value="0">共青团员</option>
+                            <option value="0">中共党员</option>
+                            <option value="0">其它党派</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="layui-input-block">联系电话：
+                        <input type="text" name="title" required  lay-verify="required" placeholder="请输入电话" autocomplete="off" class="layui-input">
+                    </td>
+                    <td class="layui-input-block">邮箱：
+                        <input type="text" name="title" required  lay-verify="required" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+                    </td>
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        <!--学习经历-->
+            <table class="layui-table" align="center">
+
+                <thead>
+                <tr>
+                    <th colspan="2">
+                        <blockquote class="layui-elem-quote" style="font-size: large">学习经历</blockquote>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="layui-input-block">第一学历毕业学校：
+                        <input type="text" name="title" required  lay-verify="required" placeholder="请输入学校全称" autocomplete="off" class="layui-input">
+                    </td>
+                    <td class="layui-input-block"> 第一学历毕业时间：
+                        <input type="text" class="layui-input" id="test2">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="layui-input-block">所学专业：
+                        <input type="text" name="title" required  lay-verify="required" placeholder="请输入专业名" autocomplete="off" class="layui-input">
+                    </td>
+                    <td class="layui-input-block"> 获得学历：
+                        <select name="city" lay-verify="required">
+                            <option value="">请选择</option>
+                            <option value="0">高中</option>
+                            <option value="0">中专</option>
+                            <option value="0">大专</option>
+                            <option value="0">本科</option>
+                            <option value="0">硕士研究生</option>
+                            <option value="0">博士研究生</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="layui-input-block">第二学历毕业学校：
+                        <input type="text" name="title"  lay-verify="required" placeholder="请输入学校全称" autocomplete="off" class="layui-input">
+                    </td>
+                    <td class="layui-input-block"> 第二学历毕业时间：
+                        <input type="text" class="layui-input" id="test2">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="layui-input-block">所学专业：
+                        <input type="text" name="title"  lay-verify="required" placeholder="请输入专业名" autocomplete="off" class="layui-input">
+                    </td>
+                    <td class="layui-input-block"> 获得学历：
+                        <select name="city" lay-verify="required">
+                            <option value="">请选择</option>
+                            <option value="0">高中</option>
+                            <option value="0">中专</option>
+                            <option value="0">大专</option>
+                            <option value="0">本科</option>
+                            <option value="0">硕士研究生</option>
+                            <option value="0">博士研究生</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="layui-input-block">第三学历毕业学校：
+                        <input type="text" name="title"  lay-verify="required" placeholder="请输入学校全称" autocomplete="off" class="layui-input">
+                    </td>
+                    <td class="layui-input-block"> 第三学历毕业时间：
+                        <input type="text" class="layui-input" id="test2">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="layui-input-block">所学专业：
+                        <input type="text" name="title"  lay-verify="required" placeholder="请输入专业名" autocomplete="off" class="layui-input">
+                    </td>
+                    <td class="layui-input-block"> 获得学历：
+                        <select name="city" lay-verify="required">
+                            <option value="">请选择</option>
+                            <option value="0">高中</option>
+                            <option value="0">中专</option>
+                            <option value="0">大专</option>
+                            <option value="0">本科</option>
+                            <option value="0">硕士研究生</option>
+                            <option value="0">博士研究生</option>
+                        </select>
+                    </td>
+                </tr>
+                </tbody>
+
+            <!--工作经历-->
+            </table>
+            <table class="layui-table" align="center">
+
+                <thead>
+                <tr>
+                    <th colspan="2"><blockquote class="layui-elem-quote" style="font-size: large">工作经历</blockquote>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="layui-input-block">
+                        任职单位名称：
+                            <input type="text" name="title"   lay-verify="required" placeholder="请输入全称" autocomplete="off" class="layui-input">
+                    </td>
+                    <td>单位性质类别：
+                        <select name="city" lay-verify="required">
+                            <option value="">请选择</option>
+                            <option value="0">国有企业</option>
+                            <option value="0">外资企业</option>
+                            <option value="0">合资企业</option>
+                            <option value="0">私营企业</option>
+                            <option value="0">事业单位</option>
+                            <option value="0">国家行政机关</option>
+                            <option value="0">政府</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="layui-input-block">
+                        任职岗位：
+                        <input type="text" name="title"   lay-verify="required" placeholder="填写工作内容和工作描述。" autocomplete="off" class="layui-input">
+                    </td>
+                    <td class="layui-input-block">
+                        任职时间：
+                        <input type="text" name="title"   lay-verify="required" placeholder="填写任职开始年月到结束年月。" autocomplete="off" class="layui-input">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="layui-input-block">
+                        任职单位名称：
+                        <input type="text" name="title"   lay-verify="required" placeholder="请输入全称" autocomplete="off" class="layui-input">
+                    </td>
+                    <td>单位性质类别：
+                        <select name="city" lay-verify="required">
+                            <option value="">请选择</option>
+                            <option value="0">国有企业</option>
+                            <option value="0">外资企业</option>
+                            <option value="0">合资企业</option>
+                            <option value="0">私营企业</option>
+                            <option value="0">事业单位</option>
+                            <option value="0">国家行政机关</option>
+                            <option value="0">政府</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="layui-input-block">
+                        任职岗位：
+                        <input type="text" name="title"   lay-verify="required" placeholder="填写工作内容和工作描述。" autocomplete="off" class="layui-input">
+                    </td>
+                    <td class="layui-input-block">
+                        任职时间：
+                        <input type="text" name="title"   lay-verify="required" placeholder="填写任职开始年月到结束年月。" autocomplete="off" class="layui-input">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="layui-input-block">
+                        任职单位名称：
+                        <input type="text" name="title"   lay-verify="required" placeholder="请输入全称" autocomplete="off" class="layui-input">
+                    </td>
+                    <td>单位性质类别：
+                        <select name="city" lay-verify="required">
+                            <option value="">请选择</option>
+                            <option value="0">国有企业</option>
+                            <option value="0">外资企业</option>
+                            <option value="0">合资企业</option>
+                            <option value="0">私营企业</option>
+                            <option value="0">事业单位</option>
+                            <option value="0">国家行政机关</option>
+                            <option value="0">政府</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="layui-input-block">
+                        任职岗位：
+                        <input type="text" name="title"   lay-verify="required" placeholder="填写工作内容和工作描述。" autocomplete="off" class="layui-input">
+                    </td>
+                    <td class="layui-input-block">
+                        任职时间：
+                        <input type="text" name="title"   lay-verify="required" placeholder="填写任职开始年月到结束年月。" autocomplete="off" class="layui-input">
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+
+                    <div class="layui-input-block" align="center">
+                        <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+
+        </div>
+
+        </form>
+
+</div>
+
+
+</div>
+<script src="../../static/plugin/layui/layui.js"></script>
+<script src="../../static/js/basicinfo.js"></script>
+</body>
+</html>

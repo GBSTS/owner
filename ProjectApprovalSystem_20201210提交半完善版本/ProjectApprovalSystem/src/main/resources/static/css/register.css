@@ -1,0 +1,48 @@
+#loginwin {
+	width: 400px;
+	height: 450px;
+	border: 25px solid #FFB800;
+	border-radius: 7px;
+	margin: 13vh auto;
+	background-color: #FFB800;
+}
+#imgPage{
+	text-align: center;
+	font-family: '微软雅黑','黑体','宋体';
+}
+body {
+	background-image: url(../img/loginBg.jpg);
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+.btn-style{
+	text-align: center;
+	margin-left: -15%;
+}
+#label1{
+	font-size: 25px;
+	font-weight: bold;
+}
+#label1-input{
+	background-color: #9fdd18;
+	border-radius: 5px;
+	border: 0px;
+	padding: 3px 6px;
+}
+.red{
+	color: red;
+}
+#smallInfo{
+	text-align: center;
+	margin-left: -15%;
+}
+#btn-md1{
+	font-size: 25px; font-weight: bold;
+}
+.btn-md2-a{
+	border-radius: 5px;
+	border: 0px;
+	padding: 5px 6px;
+	background-color: #9fdd18;
+}

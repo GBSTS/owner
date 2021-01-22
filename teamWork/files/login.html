@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <style>
+        body {
+            background-image: url("../static/img/bglog.jpg");
+            background-size: cover;
+        }
+        .body {
+            width: 300px;
+            height: 200px;
+            border: 1px black solid;
+            border-radius: 10px;
+            margin: auto;
+            margin-top: 200px;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        .men {
+            text-align: center;
+            margin-top: 50px;
+        }
+        label {
+            font-size: 20px;
+            color: white;
+        }
+        input {
+            height: 30px;
+        }
+        .cpa {
+            height: 30px;
+            width: 80px;
+            margin-left: 50px;
+            margin-top: 5px;
+            float: left;
+            border: 1px black solid;
+        }
+        .cpa input {
+            width: 80px;
+        }
+        .cpa img {
+            height: 30px;
+            width: 80px;
+            background-color: red;
+        }
+        .login {
+            border: 1px black solid;
+            border-radius: 5px;
+            font-size: larger;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="body">
+    <div class="men">
+        <form  action="./admin.html">
+            <div class="input">
+                <label>账号:</label>
+                    <input placeholder="请输入账号">
+            </div>
+            <div class="input">
+                <label>密码:</label>
+                <input placeholder="请输入密码" type="password">
+            </div>
+            <div class="input">
+                <div class="cpa">
+                    <input>
+                </div>
+                <div class="cpa">
+                    <img>
+                </div>
+            </div>
+            <button type="submit" class="login">登录</button>
+            <button><a href="../index.html">返回</a></button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+package com.example.itmasys.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+@Controller
+public class LoginController {
+
+    @RequestMapping({"/","/login"})
+    public String login(HttpServletRequest request, HttpServletResponse response, Model model){
+        HttpSession session=request.getSession();
+        model.addAttribute("msg",session.getAttribute("msg"));
+        model.addAttribute("loginname",session.getAttribute("loginname"));
+        model.addAttribute("loginpassword",session.getAttribute("loginpassword"));
+        session.removeAttribute("msg");
+        session.removeAttribute("loginname");
+        session.removeAttribute("loginpassword");
+        return "/login";
+    }
+
+}

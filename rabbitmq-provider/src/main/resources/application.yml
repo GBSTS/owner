@@ -1,0 +1,19 @@
+server:
+  port: 8021
+spring:
+# 给项目定义名称
+  application:
+    name: rabbitmq-provider
+#配置rabbitmq服务器
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: test
+    password: test
+    #虚拟host 可以不设置,使用server默认host
+    virtual-host: /
+    #信息确认配置项
+    #确认信息已经发送至交换机
+    publisher-confirm-type: correlated
+    #确认信息已经发送至队列
+    publisher-returns: true

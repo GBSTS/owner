@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.itmasys.dao.RegisterMapper">
+	<resultMap id="BaseResultMap" type="com.example.itmasys.entity.Register">
+            <result column="registerid" property="registerid" />
+	        <result column="username" property="username" />
+	        <result column="password" property="password" />
+	        <result column="phone" property="phone" />
+	        <result column="email" property="email" />
+	        <result column="roleid" property="roleid" />
+	        <result column="randomnumber" property="randomnumber" />
+		</resultMap>  
+    
+    <!-- 表字段 -->
+    <sql id="baseColumns">
+         t.registerid
+        , t.username
+        , t.password
+        , t.phone
+        , t.email
+        , t.roleid
+        , t.randomnumber
+        </sql> 
+    
+    <!-- 查询全部 -->
+    <select id="listAll" resultMap="BaseResultMap">
+		SELECT         
+        	<include refid="baseColumns" />
+		FROM register t
+	</select>
+ 
+ 	<!-- 根据主键获取单条记录 -->
+    <select id="getById" resultMap="BaseResultMap" parameterType="Integer">
+		SELECT         
+        	<include refid="baseColumns" />
+		FROM register t
+		WHERE registerid = #{registerid}
+	</select>
+
+    <!-- 根据用户名获取单条记录 -->
+    <select id="getByUsername" resultMap="BaseResultMap" parameterType="String">
+        SELECT
+        <include refid="baseColumns" />
+        FROM register t
+        WHERE username = #{username}
+    </select>
+
+    <!-- 根据主键和验证码获取单条记录 -->
+    <select id="getByRegisteridAndRandomnumber" resultMap="BaseResultMap" parameterType="Integer">
+        SELECT
+        <include refid="baseColumns" />
+        FROM register t
+        WHERE registerid = #{registerid} AND randomnumber = #{randomnumber}
+    </select>
+
+	<!-- 插入全部字段 -->
+    <insert id="insert" parameterType="com.example.itmasys.entity.Register"
+		keyProperty="registerid" keyColumn="registerid" useGeneratedKeys="true"
+    >
+	INSERT INTO register
+    <trim prefix="(" suffix=")" suffixOverrides=",">	 
+        	        	    	username,
+    	        	    	password,
+    	        	    	phone,
+    	        	    	email,
+    	        	    	roleid,
+    	        	    	randomnumber,
+    	        </trim>
+    <trim prefix="VALUES (" suffix=")" suffixOverrides=",">            
+        	        	        #{username},                   
+    	        	        #{password},                   
+    	        	        #{phone},                   
+    	        	        #{email},                   
+    	        	        #{roleid},                   
+    	        	        #{randomnumber},                   
+    	        </trim>
+	</insert>
+    
+    <!-- 插入不为NULL的字段 -->
+    <insert id="insertIgnoreNull" parameterType="com.example.itmasys.entity.Register"
+        keyProperty="registerid" keyColumn="registerid" useGeneratedKeys="true"
+        >
+        INSERT INTO register    
+        <trim prefix="(" suffix=")" suffixOverrides=",">	 
+
+                                                                            <if test="username != null">
+                   username,
+                    </if>
+                                                                <if test="password != null">
+                   password,
+                    </if>
+                                                                <if test="phone != null">
+                   phone,
+                    </if>
+                                                                <if test="email != null">
+                   email,
+                    </if>
+                                                                <if test="roleid != null">
+                   roleid,
+                    </if>
+                                                                <if test="randomnumber != null">
+                   randomnumber,
+                    </if>
+                                    </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">            
+                                                                            <if test="username != null" >
+                    #{username},                    
+                    </if>
+                                                                <if test="password != null" >
+                    #{password},                    
+                    </if>
+                                                                <if test="phone != null" >
+                    #{phone},                    
+                    </if>
+                                                                <if test="email != null" >
+                    #{email},                    
+                    </if>
+                                                                <if test="roleid != null" >
+                    #{roleid},                    
+                    </if>
+                                                                <if test="randomnumber != null" >
+                    #{randomnumber},                    
+                    </if>
+                                    </trim>
+    </insert>
+
+	<!-- 更新,更新全部字段 -->
+    <update id="update" parameterType="com.example.itmasys.entity.Register">
+    UPDATE register
+     <set>		
+                                     username=#{username},        
+                                password=#{password},        
+                                phone=#{phone},        
+                                email=#{email},        
+                                roleid=#{roleid},        
+                                randomnumber=#{randomnumber},        
+                   </set>	
+    WHERE registerid = #{registerid}
+    </update>  
+    
+    
+    <!-- 更新不为NULL的字段 -->
+    <update id="updateIgnoreNull" parameterType="com.example.itmasys.entity.Register">
+    UPDATE register
+    <set>
+    	                                                <if test="username != null" >
+                username=#{username},                 
+                </if>
+                                                <if test="password != null" >
+                password=#{password},                 
+                </if>
+                                                <if test="phone != null" >
+                phone=#{phone},                 
+                </if>
+                                                <if test="email != null" >
+                email=#{email},                 
+                </if>
+                                                <if test="roleid != null" >
+                roleid=#{roleid},                 
+                </if>
+                                                <if test="randomnumber != null" >
+                randomnumber=#{randomnumber},                 
+                </if>
+                        </set>
+    WHERE registerid = #{registerid}
+    </update>
+
+		
+	<!-- 根据主键删除记录 -->
+	<delete id="delete" parameterType="com.example.itmasys.entity.Register">
+		DELETE FROM register
+		WHERE registerid = #{registerid}
+	</delete>
+
+
+</mapper>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<template>
+		    <div class="preview" >
+		        <span class="removeBtn" @click="removePic"><van-icon name="delete"></van-icon></span>
+		    </div>
+		
+		    <div class="diy-upload">
+		        <div class="plus">+</div>
+		        <input v-if="columnName === '视频'"
+		               class="videoInput"
+		               type="file"
+		               accept="video/*"
+		               @change="uploadFile($event)"
+		               name="fileTrans">
+		        <input v-if="columnName === '文档'"
+		               class="videoInput"
+		               type="file"
+		               accept=".doc, .docx, .xml, .xlsx"
+		               @change="uploadFile($event)"
+		               name="fileTrans">
+		        <input v-if="columnName === '音频'"
+		               class="videoInput"
+		               type="file"
+		               accept="audio/*"
+		               @change="uploadFile($event)"
+		               name="fileTrans">
+		        <input v-if="columnName === '图片'"
+		               class="videoInput"
+		               accept="image/*"
+		               type="file"
+		               @change="uploadFile($event)"
+		               name="fileTrans">
+		        <input class="diy-submit" type="submit"/>
+		    </div>
+		</template>
+		
+		<style lang="less" scoped>
+		    .upload{
+		        padding: 140px 36px 160px 36px;
+		        box-sizing: border-box;
+		    }
+		    .diy-upload{
+		        position: relative;
+		        margin: 0 auto;
+		        width: 160px;
+		        height: 160px;
+		        display: flex;
+		        align-items: center;
+		        justify-content: center;
+		        box-sizing: border-box;
+		        background-color: #fff;
+		        border: 2px dashed #e5e5e5;
+		        cursor: pointer;
+		        .plus{
+		            color: #969799;
+		            font-size: 24px;
+		            /*z-index: 666;*/
+		            position: absolute;
+		            top: 0;
+		            left: 0;
+		            width: 160px;
+		            height: 160px;
+		            /*background: #333333;*/
+		            text-align: center;
+		            line-height: 160px;
+		        }
+		        .videoInput{
+		            position: absolute;
+		            width: 160px;
+		            height: 160px;
+		            overflow: hidden;
+		            opacity: 0;
+		        }
+		    }
+		    .preview{
+		        position: relative;
+		        margin-top: 10px;
+		        display: none;
+		        /*border: 2px solid #dedede;*/
+		        text-align: center;
+		        span:nth-of-type(1){
+		            width: 32px;
+		            height: 32px;
+		            position: absolute;
+		            right: 0;
+		            bottom: 0;
+		            z-index: 10000;
+		            font-size: 26px;
+		            color: #fff;
+		        }
+		        span:nth-of-type(2){
+		            width: 30px;
+		            height: 30px;
+		            text-align: center;
+		            line-height: 30px;
+		            position: absolute;
+		            top: -15px;
+		            right: -15px;
+		        }
+		    }
+		    .diy-detail{
+		        width: 100%;
+		        overflow: hidden;
+		        .btn{
+		            span{
+		                margin-bottom: 10px;
+		            }
+		        }
+		        .van-cell{
+		            background-color: #F0F0F0;
+		            border-radius: 35px;
+		            font-size: 26px;
+		            height: 69px;
+		            line-height: 69px;
+		            padding: 0 22px;
+		            color: #999;
+		        }
+		        .van-hairline--top-bottom::after, .van-hairline-unset--top-bottom::after {
+		            border-width: 0;
+		        }
+		        p{
+		            height: 64px;
+		            line-height: 64px;
+		            font-size: 32px;
+		            color: #333;
+		            position: relative;
+		            padding-left: 16px;
+		        }
+		        p::before{
+		            position: absolute;
+		            top: 0;
+		            left: 0;
+		            content: '*';
+		            color: #FF0000;
+		        }
+		
+		        span{
+		            display: inline-block;
+		            width: 157px;
+		            background: #F0F0F0;
+		            border-radius: 35px;
+		            color: #999;
+		            font-size: 26px;
+		            padding: 14px 18px;
+		            margin-right: 28px;
+		            text-align: center;
+		        }
+		        .active{
+		            color: #fff;
+		            background: linear-gradient(to right,#FD5130,#FA6C34);
+		        }
+		    }
+		    .diy-submit {
+		        position: fixed;
+		        height: 150px;
+		        width: 90%;
+		        bottom: 0;
+		        background: #fff;
+		
+		        .van-button {
+		            width: 100%;
+		            height: 90px;
+		            border-radius: 45px;
+		            font-size: 36px;
+		            color: #fff;
+		            background: linear-gradient(to right, #FD5130, #FA6C34);
+		            top: 50%;
+		            transform: translate(0, -50%);
+		        }
+		        .van-button--default {
+		            border: none;
+		        }
+		    }
+		</style>
+		
+		
+		
+	</body>
+</html>

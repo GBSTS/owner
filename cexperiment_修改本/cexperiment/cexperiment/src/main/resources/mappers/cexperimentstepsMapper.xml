@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cexper.cexperiment.dao.CexperimentstepsDao" >
+    <resultMap id="cexperimentstpesMap" type="com.cexper.cexperiment.model.Cexperimentsteps" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="num" property="num" jdbcType="INTEGER" />
+        <result column="intro" property="intro" jdbcType="VARCHAR" />
+        <result column="value" property="value" jdbcType="VARCHAR" />
+        <result column="ceid" property="ceid" jdbcType="INTEGER" />
+    </resultMap>
+    <insert id="insertCexperimentsteps" useGeneratedKeys="true" keyProperty="cexperimentsteps.id" parameterType="com.cexper.cexperiment.model.Cexperimentsteps">
+        insert into cexperimentsteps (num,intro,value,ceid)
+        values (#{cexperimentsteps.num},#{cexperimentsteps.intro},#{cexperimentsteps.value},#{cexperimentsteps.ceid})
+    </insert>
+
+    <update id="updateCexperimentsteps"  parameterType="com.cexper.cexperiment.model.Cexperimentsteps">
+        update cexperimentsteps set num=#{num},intro=#{intro},value=#{value},ceid=#{ceid}
+        where id=#{cexperimentsteps.id}
+    </update>
+
+    <delete id="deleteCexperimentsteps" parameterType="INTEGER">
+        delete from cexperimentsteps where id=#{id}
+    </delete>
+
+    <select id="findCexperimentstepsById" resultMap="cexperimentstpesMap" parameterType="INTEGER">
+        select * from cexperimentsteps
+        <where>
+            id=#{id}
+        </where>
+    </select>
+
+
+
+
+    <select id="findCexperimentstepsByCeid" resultMap="cexperimentstpesMap" parameterType="INTEGER">
+        select * from cexperimentsteps
+        <where>
+            ceid=#{ceid}
+        </where>
+        order by num asc
+    </select>
+
+</mapper>

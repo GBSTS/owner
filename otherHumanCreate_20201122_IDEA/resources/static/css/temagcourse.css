@@ -1,0 +1,8 @@
+.table{
+    height: auto;white-space: normal;
+}
+.layui-layer-own1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

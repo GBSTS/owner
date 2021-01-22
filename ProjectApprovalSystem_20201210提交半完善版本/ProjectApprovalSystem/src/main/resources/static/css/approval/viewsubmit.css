@@ -1,0 +1,9 @@
+.searchWin input{
+    width: 150px;
+    display: inline-block;
+    margin: 5px;
+}
+#test{
+    height: auto;
+    white-space: normal;
+}

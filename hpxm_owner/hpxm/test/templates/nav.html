@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+		<title>Title</title>
+
+		<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+		<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<style>
+			*{
+				padding:0;
+				margin:0;
+			}
+			div{
+				display: inline-block;
+				width: 120px;
+				margin-top: 5px;
+			}
+			button{
+				float: right;
+				margin-right: 10px;
+				margin-top: 5px;
+			}
+		</style>
+	</head>
+	<body style="background-color: #d1d1d1;">
+		<div style="margin-left: 50px;">
+			<label>编号：</label>
+			<label id="userId"></label>
+		</div>
+		<div >
+			<label>姓名：</label>
+			<label id="userName"></label>
+		</div>
+		<button type="button">退出登录</button>
+	</body>
+</html>

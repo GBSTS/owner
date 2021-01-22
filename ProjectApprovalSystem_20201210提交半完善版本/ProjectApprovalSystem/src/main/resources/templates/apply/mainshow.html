@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>申请综合界面</title>
+    <link rel="stylesheet" href="../../static/plugin/layui/css/layui.css" th:href="@{/plugin/layui/css/layui.css}">
+    <link rel="stylesheet" href="../../static/css/xadmin.css" th:href="@{/css/xadmin.css}">
+    <link rel="stylesheet" href="../../static/css/apply/applmamainshow.css" th:href="@{/css/apply/applmamainshow.css}">
+</head>
+<body class="layui-layout-body">
+
+    <!-- 顶部 -->
+    <div class="container">
+        <div class="logo">
+            <a href="javascript:void(0);">团队管理系统-申请者</a></div>
+        <div class="left_open">
+            <a><i title="展开左侧栏" class="layui-icon" id="id1">&#xe656;&nbsp;展开或折叠</i></a>
+        </div>
+    </div>
+    <!-- 左侧菜单 -->
+    <div class="left-nav">
+        <div id="side-nav">
+            <ul id="nav">
+                <li>
+                    <a onclick="xadmin.add_tab('选取项目','/apply/selectitem',true)">
+                        <i class="layui-icon">&#xe617;</i>
+                        <cite>选取项目</cite></a>
+                </li>
+                <li>
+                    <a onclick="xadmin.add_tab('查看进度','/apply/selectapplyLog',true)">
+                        <i class="layui-icon">&#xe617;</i>
+                        <cite>查看进度</cite></a>
+                </li>
+                <li>
+                    <a onclick="xadmin.add_tab('提交面板','/apply/submitPanel',true)">
+                        <i class="layui-icon">&#xe617;</i>
+                        <cite>提交面板</cite></a>
+                </li>
+                <li>
+                    <a onclick="xadmin.add_tab('提交历史','/apply/submitHistory',true)">
+                        <i class="layui-icon">&#xe617;</i>
+                        <cite>提交状态</cite></a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <!-- 右侧主体 -->
+    <div class="page-content">
+        <div class="layui-tab tab" lay-filter="xbs_tab" lay-allowclose="false">
+            <ul class="layui-tab-title">
+                <li class="home">
+                    <i class="layui-icon">&#xe68e;</i>主页</li></ul>
+            <div class="layui-unselect layui-form-select layui-form-selected" id="tab_right">
+                <dl>
+                    <dd data-type="this">关闭当前</dd>
+                    <dd data-type="other">关闭其它</dd>
+                    <dd data-type="all">关闭全部</dd></dl>
+            </div>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <iframe src='/apply/welcome' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+                </div>
+            </div>
+            <div id="tab_show"></div>
+        </div>
+    </div>
+    <div class="page-content-bg"></div>
+    <style id="theme_style"></style>
+
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="../../static/plugin/layui/layui.js" th:src="@{/plugin/layui/layui.js}"></script>
+    <script src="../../static/js/xadmin.js" th:src="@{/js/xadmin.js}"></script>
+    <script src="../../static/js/apply/applmamainshow.js" th:src="@{/js/apply/applmamainshow.js}"></script>
+</body>
+</html>

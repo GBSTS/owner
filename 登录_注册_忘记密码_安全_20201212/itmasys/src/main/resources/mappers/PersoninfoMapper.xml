@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.itmasys.dao.PersoninfoMapper">
+	<resultMap id="BaseResultMap" type="com.example.itmasys.entity.Personinfo">
+            <result column="userid" property="userid" />
+	        <result column="username" property="username" />
+	        <result column="phone" property="phone" />
+	        <result column="email" property="email" />
+	        <result column="address" property="address" />
+	        <result column="education" property="education" />
+	        <result column="cardid" property="cardid" />
+		</resultMap>  
+    
+    <!-- 表字段 -->
+    <sql id="baseColumns">
+         t.userid
+        , t.username
+        , t.phone
+        , t.email
+        , t.address
+        , t.education
+        , t.cardid
+        </sql> 
+    
+    <!-- 查询全部 -->
+    <select id="listAll" resultMap="BaseResultMap">
+		SELECT         
+        	<include refid="baseColumns" />
+		FROM personinfo t
+	</select>
+ 
+ 	<!-- 根据主键获取单条记录 -->
+    <select id="getById" resultMap="BaseResultMap" parameterType="Integer">
+		SELECT         
+        	<include refid="baseColumns" />
+		FROM personinfo t
+		WHERE userid = #{userid}
+	</select>
+
+	<!-- 插入全部字段 -->
+    <insert id="insert" parameterType="com.example.itmasys.entity.Personinfo"
+		keyProperty="userid" keyColumn="userid" useGeneratedKeys="true"
+    >
+	INSERT INTO personinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">	 
+        	    	userid,
+    	        	    	username,
+    	        	    	phone,
+    	        	    	email,
+    	        	    	address,
+    	        	    	education,
+    	        	    	cardid,
+    	        </trim>
+    <trim prefix="VALUES (" suffix=")" suffixOverrides=",">            
+        	        #{userid},                   
+    	        	        #{username},                   
+    	        	        #{phone},                   
+    	        	        #{email},                   
+    	        	        #{address},                   
+    	        	        #{education},                   
+    	        	        #{cardid},                   
+    	        </trim>
+	</insert>
+    
+    <!-- 插入不为NULL的字段 -->
+    <insert id="insertIgnoreNull" parameterType="com.example.itmasys.entity.Personinfo"
+        keyProperty="userid" keyColumn="userid" useGeneratedKeys="true"
+        >
+        INSERT INTO personinfo    
+        <trim prefix="(" suffix=")" suffixOverrides=",">	 
+
+                                                <if test="userid != null">
+                   userid,
+                    </if>
+                                                                <if test="username != null">
+                   username,
+                    </if>
+                                                                <if test="phone != null">
+                   phone,
+                    </if>
+                                                                <if test="email != null">
+                   email,
+                    </if>
+                                                                <if test="address != null">
+                   address,
+                    </if>
+                                                                <if test="education != null">
+                   education,
+                    </if>
+                                                                <if test="cardid != null">
+                   cardid,
+                    </if>
+                                    </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">            
+                                                <if test="userid != null" >
+                    #{userid},                    
+                    </if>
+                                                                <if test="username != null" >
+                    #{username},                    
+                    </if>
+                                                                <if test="phone != null" >
+                    #{phone},                    
+                    </if>
+                                                                <if test="email != null" >
+                    #{email},                    
+                    </if>
+                                                                <if test="address != null" >
+                    #{address},                    
+                    </if>
+                                                                <if test="education != null" >
+                    #{education},                    
+                    </if>
+                                                                <if test="cardid != null" >
+                    #{cardid},                    
+                    </if>
+                                    </trim>
+    </insert>
+
+	<!-- 更新,更新全部字段 -->
+    <update id="update" parameterType="com.example.itmasys.entity.Personinfo">
+    UPDATE personinfo
+     <set>		
+                                                   phone=#{phone},        
+                                email=#{email},        
+                                address=#{address},        
+                                education=#{education},        
+                                cardid=#{cardid},        
+                   </set>	
+    WHERE userid = #{userid}
+    </update>  
+    
+    
+    <!-- 更新不为NULL的字段 -->
+    <update id="updateIgnoreNull" parameterType="com.example.itmasys.entity.Personinfo">
+    UPDATE personinfo
+    <set>
+    	                                                                    <if test="phone != null" >
+                phone=#{phone},                 
+                </if>
+                                                <if test="email != null" >
+                email=#{email},                 
+                </if>
+                                                <if test="address != null" >
+                address=#{address},                 
+                </if>
+                                                <if test="education != null" >
+                education=#{education},                 
+                </if>
+                                                <if test="cardid != null" >
+                cardid=#{cardid},                 
+                </if>
+                        </set>
+    WHERE userid = #{userid}
+    </update>
+
+		
+	<!-- 根据主键删除记录 -->
+	<delete id="delete" parameterType="com.example.itmasys.entity.Personinfo">
+		UPDATE personinfo
+		SET is_deleted=1
+		WHERE userid = #{userid}
+	</delete>
+
+
+</mapper>

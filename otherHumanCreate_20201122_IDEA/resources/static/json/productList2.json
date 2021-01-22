@@ -1,0 +1,95 @@
+{
+	"code": 0,
+	"msg": "",
+	"data": [{
+		"applyId": "1",
+		"applicant": "dssssssssssssssssdsa",
+		"contact": "17366759223",
+		"schoolName": "惠州学院",
+		"schoolAddress":"广东省惠州市惠城区演达大道46号",
+		"supportingMaterials": ["../static/img/2034043.jpg","../static/img/2034171.jpg","../static/img/2034043.jpg","../static/img/2034171.jpg","../static/img/2034043.jpg","../static/img/2034171.jpg"],
+		"approvalTime":"2001-12-11",
+		"approvalStatus":false,
+		"reason":"不符合规格"
+	},{
+		"applyId": "2",
+		"applicant": "dssssssssssssssssdsa",
+		"contact": "17366759223",
+		"schoolName": "惠州学院",
+		"schoolAddress":"广东省惠州市惠城区演达大道46号",
+		"supportingMaterials": ["../static/img/2034043.jpg","../static/img/2034171.jpg","../static/img/2034043.jpg","../static/img/2034171.jpg","../static/img/2034043.jpg","../static/img/2034171.jpg"],
+		"approvalTime":"2001-12-11",
+		"approvalStatus":true,
+		"reason":""
+	},{
+		"applyId": "3",
+		"applicant": "dssssssssssssssssdsa",
+		"contact": "17366759223",
+		"schoolName": "惠州学院",
+		"schoolAddress":"广东省惠州市惠城区演达大道46号",
+		"supportingMaterials": ["../static/img/2034043.jpg","../static/img/2034171.jpg","../static/img/2034043.jpg","../static/img/2034171.jpg","../static/img/2034043.jpg","../static/img/2034171.jpg"],
+		"approvalTime":"2001-12-11",
+		"approvalStatus":true,
+		"reason":""
+	},{
+		"applyId": "4",
+		"applicant": "dssssssssssssssssdsa",
+		"contact": "17366759223",
+		"schoolName": "惠州学院",
+		"schoolAddress":"广东省惠州市惠城区演达大道46号",
+		"supportingMaterials": ["../static/img/2034043.jpg","../static/img/2034171.jpg","../static/img/2034043.jpg","../static/img/2034171.jpg","../static/img/2034043.jpg","../static/img/2034171.jpg"],
+		"approvalTime":"2001-12-11",
+		"approvalStatus":true,
+		"reason":""
+	},{
+		"applyId": "5",
+		"applicant": "dssssssssssssssssdsa",
+		"contact": "17366759223",
+		"schoolName": "惠州学院",
+		"schoolAddress":"广东省惠州市惠城区演达大道46号",
+		"supportingMaterials": ["../static/img/2034043.jpg","../static/img/2034171.jpg","../static/img/2034043.jpg","../static/img/2034171.jpg","../static/img/2034043.jpg","../static/img/2034171.jpg"],
+		"approvalTime":"2001-12-11",
+		"approvalStatus":true,
+		"reason":""
+	},{
+		"applyId": "6",
+		"applicant": "dssssssssssssssssdsa",
+		"contact": "17366759223",
+		"schoolName": "惠州学院",
+		"schoolAddress":"广东省惠州市惠城区演达大道46号",
+		"supportingMaterials": ["../static/img/2034043.jpg","../static/img/2034171.jpg","../static/img/2034043.jpg","../static/img/2034171.jpg","../static/img/2034043.jpg","../static/img/2034171.jpg"],
+		"approvalTime":"2001-12-11",
+		"approvalStatus":true,
+		"reason":""
+	},{
+		"applyId": "7",
+		"applicant": "dssssssssssssssssdsa",
+		"contact": "17366759223",
+		"schoolName": "惠州学院",
+		"schoolAddress":"广东省惠州市惠城区演达大道46号",
+		"supportingMaterials": ["../static/img/2034043.jpg","../static/img/2034171.jpg","../static/img/2034043.jpg","../static/img/2034171.jpg","../static/img/2034043.jpg","../static/img/2034171.jpg"],
+		"approvalTime":"2001-12-11",
+		"approvalStatus":true,
+		"reason":""
+	},{
+		"applyId": "8",
+		"applicant": "dssssssssssssssssdsa",
+		"contact": "17366759223",
+		"schoolName": "惠州学院",
+		"schoolAddress":"广东省惠州市惠城区演达大道46号",
+		"supportingMaterials": ["../static/img/2034043.jpg","../static/img/2034171.jpg","../static/img/2034043.jpg","../static/img/2034171.jpg","../static/img/2034043.jpg","../static/img/2034171.jpg"],
+		"approvalTime":"2001-12-11",
+		"approvalStatus":true,
+		"reason":""
+	},{
+		"applyId": "9",
+		"applicant": "dssssssssssssssssdsa",
+		"contact": "17366759223",
+		"schoolName": "惠州学院",
+		"schoolAddress":"广东省惠州市惠城区演达大道46号",
+		"supportingMaterials": ["../static/img/2034043.jpg","../static/img/2034171.jpg","../static/img/2034043.jpg","../static/img/2034171.jpg","../static/img/2034043.jpg","../static/img/2034171.jpg"],
+		"approvalTime":"2001-12-11",
+		"approvalStatus":true,
+		"reason":""
+	}]
+}

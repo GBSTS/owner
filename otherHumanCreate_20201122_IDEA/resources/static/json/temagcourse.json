@@ -1,0 +1,42 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 3,
+  "data": [{
+    "courseId":1,
+    "courseName": "name1",
+    "courseType": "公共任选课",
+    "courseBriefIntroduction": "courseBriefIntroduction",
+    "teacher": "teacher",
+    "semester": "semester",
+    "optionalClass": ["optionalClass1","optionalClass2","optionalClass3"],
+    "credit": 1.5,
+    "classHours": 20,
+    "optionalNumberOfPeople": 45,
+    "numberOfPeopleSelected": 0
+  },{
+    "courseId":2,
+    "courseName": "name2",
+    "courseType": "专业任选课",
+    "courseBriefIntroduction": "courseBriefIntroduction",
+    "teacher": "teacher",
+    "semester": "semester",
+    "optionalClass": ["optionalClass1","optionalClass2","optionalClass3"],
+    "credit": 1.5,
+    "classHours": 20,
+    "optionalNumberOfPeople": 45,
+    "numberOfPeopleSelected": 0
+  },{
+    "courseId":3,
+    "courseName": "name3",
+    "courseType": "专业限选课",
+    "courseBriefIntroduction": "courseBriefIntroduction",
+    "teacher": "teacher",
+    "semester": "semester",
+    "optionalClass": ["optionalClass1","optionalClass2","optionalClass3"],
+    "credit": 1.5,
+    "classHours": 20,
+    "optionalNumberOfPeople": 45,
+    "numberOfPeopleSelected": 0
+  }]
+}

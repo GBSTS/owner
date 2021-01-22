@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <form>
+        <input id="password" type="password" name="password" />
+        <button type="button" onclick="submitFun()">Submit</button>
+    </form>
+</div>
+<script src="../static/js/jsencrypt.js" th:src="@{/js/jsencrypt.js}"></script>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+
+    function RSA_Encypt(original_text){
+        var PUBLIC_KEY = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQChrHThkqOhAEJjrNgIURolH0yvn61ypjmqkPXaWuQXlt6GY1G8JcygCMys+54p/rLkOzOzEtcovX638I+BU+HZE7lCL0Wjn0sq/qgC8uikB2MXdtC9lpBYlq71w5mrANfmoUgxsleQgQaFCAZjQqFMfD10VAWnya1j6Uxfa2jnQQIDAQAB'.trim();
+        var encrypt = new JSEncrypt();
+        encrypt.setPublicKey(PUBLIC_KEY);
+        return encrypt.encrypt(original_text);
+    }
+
+    function submitFun() {
+        var formData = new FormData();
+        var password = $("#password").val().trim();
+        formData.append("password",RSA_Encypt(password));
+        $.ajax({
+            url:"/submit",
+            type: "POST",
+            data:formData,
+            cache:false,         //不设置缓存
+            processData: false,  // 不处理数据
+            contentType: false   // 不设置内容类型,
+            // ,success:function(str){
+            //     if(str=="验证码已经发送，请注意查看。"){
+            //         layui.layer.msg(str,{icon:1});
+            //     }else{
+            //         layui.layer.msg(str,{icon:5});
+            //     }
+            // }
+            ,error:function () {
+                layui.use('layer', function() {
+                    var layer = layui.layer;
+                    layer.msg("网络异常");
+                });
+            }
+        });
+    }
+
+</script>
+</body>
+
+</html>

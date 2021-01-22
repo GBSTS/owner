@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+		<title>Title</title>
+
+		<!--<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">-->
+		<!--<script src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>-->
+		<!--<script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>-->
+
+		<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../static/css/html/addproduct.css">
+	</head>
+	<body>
+		<div style="margin-top: 1%; margin-bottom: 1%;">
+			<p style="font-size: 35px; text-align: center;">本次添加的商品信息</p>
+			<button type="button" style="margin-left: 10%;">上传商品信息</button>
+		</div>
+		<div id="productShow">
+			<div id="windowFrame" v-for="(obj,i) in arr">
+				<div class="productWindow">
+					<div style="width: 150px;">
+						<img :src="obj.imgUrl" style="width: 150px; height:180px; display: inline-block;" />
+					</div>
+					<div style="width: 70%; margin-left: 3%;">
+						<div>
+							<label>商品名：</label>
+							<input type="text" name="productName" V-model="obj.productName" style="width: 120px;" disabled>
+						</div>
+						<div>
+							<label>单价：</label>
+							<input type="text" name="productValue" V-model="obj.productValue" style="width: 55px;" disabled>
+							<span>￥</span>
+						</div>
+						<div>
+							<label>生产产地：</label>
+							<input type="text" name="productLocal" V-model="obj.productLocal" style="width: 250px;" disabled>
+						</div>
+						<div>
+							<label>预计成熟日期：</label>
+							<input type="date" name="expectedMatureDate" V-model="obj.expectedMatureDate" style="width: 125px;" disabled>
+						</div>
+						<div style="position: relative; display: block; margin-bottom: 70px;">
+							<label>产品介绍：</label>
+							<textarea name="productIntroduction" V-model="obj.productIntroduction" style="position:absolute; top: 0px; width: 350px; height: 90px; resize:none;" disabled></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+		<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+		<script src="../static/js/html/addproduct.js"></script>
+	</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+		<title>扶贫-农村产品管理</title>
+		<link rel="stylesheet" href="../static/css/html/template.css" type="text/css" th:href="@{/css/html/template.css}" />
+		<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	</head>
+	<frameset rows="100px,32px,*,30px" >
+	    <frame src="top.html" th:src="top.html" noresize="noresize"/>
+	    <frame src="nav.html" th:src="nav.html" noresize="noresize"/>
+	    <!--将下部分又分为左右两部分-->
+	    <frameset cols="150px,*">
+	        <frame src="left.html" th:src="left.html"  />
+	        <!--接收来自left的锚点跳转-->
+	        <frame src="addproduct.html" th:src="addproduct.html" name="right" th:frameborder="1" />
+	    </frameset>
+		<frame src="footer.html" th:src="footer.html" noresize="noresize"/>
+	</frameset>
+	
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script type="text/javascript" src="../static/js/html/template.js"></script>
+</html>

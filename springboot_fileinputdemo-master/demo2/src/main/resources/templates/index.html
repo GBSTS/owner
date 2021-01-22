@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>上传文件</title>
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{css/fileinput.css}">
+</head>
+<body>
+
+    <form enctype="multipart/form-data">
+        <div class="form-group center-block" >
+            <input id="test1" name="file" type="file" class="file" multiple="multiple" data-browse-on-zone-click="true">
+        </div>
+    </form>
+
+    <script th:src="@{js/jquery.min.js}"></script>
+    <script th:src="@{js/bootstrap.min.js}"></script>
+    <script th:src="@{js/fileinput.js}"></script>
+    <script th:src="@{js/theme.js}"></script>
+    <script th:src="@{js/zh.js}"></script>
+    <script th:src="@{js/initFileInput.js}"></script>
+    <script>
+        initFileInput("test1","/fileupload");
+    </script>
+
+</body>
+</html>

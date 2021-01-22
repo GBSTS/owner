@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cexper.cexperiment.dao.CexperimentnodeDao" >
+    <resultMap id="cexperimentnodeMap" type="com.cexper.cexperiment.model.Cexperimentnode" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="cename" property="cename" jdbcType="VARCHAR" />
+        <result column="classid" property="classid" jdbcType="INTEGER" />
+        <result column="num" property="num" jdbcType="INTEGER" />
+        <result column="code" property="code" jdbcType="VARCHAR" />
+        <result column="pictures" property="pictures" jdbcType="VARCHAR" />
+        <result column="video" property="video" jdbcType="VARCHAR" />
+        <result column="annex" property="annex" jdbcType="VARCHAR" />
+        <result column="intro" property="intro" jdbcType="VARCHAR" />
+    </resultMap>
+    <insert id="insertcexperimentnode" useGeneratedKeys="true" keyProperty="cexperimentnode.id" parameterType="com.cexper.cexperiment.model.Cexperimentnode">
+        insert into cexperimentnode (cename,classid,num,code,pictures,video,annex,intro)
+        values (#{cexperimentnode.cename},#{cexperimentnode.classid},#{cexperimentnode.num},#{cexperimentnode.cretime},#{cexperimentnode.pictures},#{cexperimentnode.video},#{cexperimentnode.annex},#{cexperimentnode.intro})
+    </insert>
+
+    <update id="updatecexperimentnode"  parameterType="com.cexper.cexperiment.model.Cexperimentnode">
+        update cexperimentnode set cename=#{cename},classid=#{classid},num=#{num},
+        code=#{code},pictures=#{pictures},video=#{video},annex=#{annex},intro=#{intro}
+        where id=#{cexperimentnode.id}
+    </update>
+
+    <delete id="deletecexperimentnode" parameterType="INTEGER">
+        delete from cexperimentnode where id=#{id}
+    </delete>
+
+    <select id="findCexperimentnodeById" resultMap="cexperimentnodeMap" parameterType="INTEGER">
+        select * from cexperimentnode
+        <where>
+            id=#{id}
+        </where>
+    </select>
+
+
+</mapper>
