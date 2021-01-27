@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>疫情数据列表</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../css/oksub.css">
+    <script type="text/javascript" src="../../lib/loading/okLoading.js"></script>
+</head>
+<body>
+<div class="ok-body">
+    <!--模糊搜索区域-->
+    <blockquote class="layui-elem-quote"><h3>&nbsp&nbsp疫情数据检索</h3></blockquote>
+    <fieldset  class="layui-elem-field">
+        <legend>Tips</legend>
+        <div class="layui-field-box">
+            下拉框支持搜索~~
+        </div>
+    </fieldset>
+    <form class="layui-form ok-search-form">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <select name="eid" id="eid" lay-search>
+                        <option value="">选择疫情名称</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <select  lay-filter="province" name="province" id="province" lay-search>
+                        <option value="">选择省\直辖市\行政区</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <select  name="city" id="city" lay-search>
+                        <option value="">选择市</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <input class=" layui-input" placeholder="日期范围选择" autocomplete="off" id="date" name="date"/>
+                </div>
+            </div>
+
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <button class="layui-btn" lay-submit="" lay-filter="search">
+                        <i class="layui-icon">&#xe615;</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!--数据表格-->
+    <br><br>
+    <blockquote class="layui-elem-quote"><h3>&nbsp&nbsp疫情数据信息</h3></blockquote>
+    <table class="layui-hide" id="tableId" lay-filter="tableFilter"></table>
+</div>
+<!--js逻辑-->
+<script src="../../lib/layui/layui.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/allAjax.js"></script>
+</body>
+<script>
+    layui.use(["okTab", "table", "form", "jquery", "okLayer", "laydate",  "okLayx", "upload","layer"], function () {
+        let table = layui.table;
+        let form = layui.form;
+        let okLayer = layui.okLayer;
+        let laydate = layui.laydate;
+        let okLayx = layui.okLayx;
+        let upload = layui.upload;
+        let $ = layui.jquery;
+        let layer = layui.layer;
+        let okTab = layui.okTab();
+         laydate.render(
+             {
+                 elem: "#date",
+                 type: "date",
+                 range: ' - ',
+                 max: 0
+             }
+
+             );
+        okLoading.close($);
+        //------------1. 查省  将省\直辖市\行政区 放入一个类型为address的List即可
+        $.ajax({
+            url: "/findparentidnull",
+
+            type: "post",
+            dataType: "json",
+            success: function (data) {
+                if(data["code"]==0)
+                {
+                    $.each(data["data"],function (index , value) {
+                        $("#province").append("<option value="+value["id"]+">"+value["province"]+"</option>");
+                    })
+                    form.render();
+                }
+            }
+        });
+        //------------1. 查疫情名称   放回一个疫情信息类的list
+        $.ajax({
+            url: "/EpidEname",
+            type: "post",
+            dataType: "json",
+            success: function (data) {
+                if(data["code"]==0)
+                {
+                    $.each(data["data"],function (index , value) {
+                        $("#eid").append("<option value="+value["id"]+">"+value["ename"]+"</option>");
+                    })
+                    form.render();
+                }
+            }
+        });
+		
+        //------------2. 查市 将市 放入一个类型为address的List即可
+        form.on('select(province)', function (data) {
+            $("#city").children().remove();
+            $("#city").append("<option value=''>请选择市</option>")
+            $.ajax({
+                url: "/findcity",
+                async:false,
+                data:{parentid:data.value},//数据为具体省id
+                type: "post",
+                dataType: "json",
+                success: function (data) {
+                    if(data["code"]==0)
+                    {
+                        $.each(data["data"],function (index , value) {
+                            $("#city").append("<option value="+value["id"]+">"+value["city"]+"</option>");
+                        })
+                        form.render();
+                    }
+                }
+            });
+            form.render();
+        });
+        var province="";
+        //-------------------extend 放省名
+
+        $.ajax({
+            url: "/InAccount",
+            dataType: "json",
+            type: "post",
+            async:false,
+            success: function (data) {
+
+                if (data["code"] === 0) {
+                    province=data["data"]["province"];
+
+                }
+            }
+        });
+        //------------3. 后台返回LayuiMap 额外返回ename、province、city
+        let eTable = table.render({
+            elem: '#tableId',
+            url: '/EpdataAll',
+          //  url: '../../json/data-table.json',
+            limit: 20,
+            limits: [10, 20, 30, 40, 50, 60, 70, 80, 90, 10000000],
+            skin: 'row', //行边框风格
+            even: true,//开启隔行背景
+            page: true,
+           //toolbar: true,
+            toolbar: "#toolbarTpl",
+            //  height: 'full-100',
+            size: "sm",
+            cols: [[
+                // {type: "checkbox", fixed: "left"},
+                {field: "id", hide:true, title: "ID", width: 60, sort: true, fixed: "left"},
+                {field: "ename", title: "疫情名称", width: 160},
+                {field: "province", title: "省/直辖市/行政区", width: 160},
+                {field: "city", title: "市", width: 80
+                    , templet: function (d) {
+                        if (!d.city)
+                            return '/';
+                        return d.city
+                    }},
+                {field: "date", title: "日期", width: 100},
+                {field: "ndiagnosis", title: "新增确诊", width: 100
+                    , templet: function (d) {
+                      if (d.ndiagnosis >=10000)
+                            return (d.ndiagnosis/10000).toFixed(2)+' 万';
+
+                        return d.ndiagnosis
+                    }
+                },
+                {field: "ndeath", title: "新增死亡", width: 100
+                    , templet: function (d) {
+                         if (d.ndeath >=100000)
+                            return (d.ndeath/10000).toFixed(2)+' 万';
+
+                        return d.ndeath
+                    }
+                },
+                {field: "ncure", title: "新增治愈", width: 100
+                    , templet: function (d) {
+                         if (d.ncure >=100000)
+                            return (d.ncure/10000).toFixed(2)+' 万';
+
+                        return d.ncure
+                    }
+                },
+                {field: "cdiagnosis", title: "累计确诊", width: 100
+                    , templet: function (d) {
+                         if (d.cdiagnosis >=100000)
+                            return (d.cdiagnosis/10000).toFixed(2)+' 万';
+
+                        return d.cdiagnosis
+                    }
+                },
+                {field: "cdeath", title: "累计死亡", width: 100
+                    , templet: function (d) {
+                          if (d.cdeath >=100000)
+                            return (d.cdeath/10000).toFixed(2)+' 万';
+
+                        return d.cdeath
+                    }
+                },
+                {field: "ccure", title: "累计治愈", width: 100
+                    , templet: function (d) {
+                         if (d.ccure >=100000)
+                            return (d.ccure/10000).toFixed(2)+' 万';
+
+                        return d.ccure
+                    }
+                },
+                {title: "操作", align: "center", width: 120, fixed: "right", templet: "#operationTpl"}
+            ]],
+            done:function()
+            {
+                  $("option[value='10000000']").html("全部");
+            }
+        });
+
+        //------------4. 搜索须知：
+        // a 日期区间放在date字段用“ - ”连接 例如1010-02-02 - 1010-03-03
+        // b 直接传送省id、市id，放入province和city字段
+        // c 疫情名字传id 放在 eid
+        form.on("submit(search)", function (data) {
+            if (!($("#tableId").hasClass("refreshThis"))) {
+                $("#tableId").addClass("refreshThis");
+                eTable.reload({
+                    where: data.field,
+                    page: {curr: 1}
+                });
+                okLayx.notice({
+                    title: "成功",
+                    type: "success",
+                    message: "检索数据完成"
+                });
+                setTimeout(function () {
+                    $("#tableId").removeClass("refreshThis");
+                }, 3000)
+            } else {
+                layer.msg("客官请不要频繁点击哦！我会反应不过来的");
+            }
+
+            return false;
+        });
+
+        table.on("toolbar(tableFilter)", function (obj) {
+            switch (obj.event) {
+                case "add":
+                    add();
+                    break;
+                case "download":
+                    download();
+                    break;
+            }
+        });
+
+        table.on("tool(tableFilter)", function (obj) {
+            let data = obj.data;
+            switch (obj.event) {
+                case "edit":
+                    edit(data,data.province);
+                    break;
+                case "del":
+                    del(data.id);
+                    break;
+            }
+        });
+
+
+        function add() {
+            okLayer.open("添加新数据", "./data-add.html", "90%", "90%", null, function () {
+                eTable.reload();
+            })
+        }
+
+        function edit(data,dataprovince) {
+         if(dataprovince!=province && province!="全国")
+         {
+             okLayx.notice({
+                 title: "错误",
+                 type: "error",
+                 message: "没有权限进行修改"
+             });
+         }
+         else
+         {
+             okLayer.open(
+                 "更新数据",
+                 "/epdataedit?id=" + data["id"],
+                 "90%", "90%",
+                 null,
+                 function (layero) {
+                     eTable.reload();
+                 });
+         }
+        }
+        //------------5. 后台收到id删除记录
+        function del(id) {
+            okLayer.confirm("确定要删除数据记录吗？", function (index) {
+                $.ajax({
+                    url: "/Epdatadel",
+                    dataType: "json",
+                    type: "post",
+                    data: {id: id},
+                    success: function (data) {
+                        if (data["code"] === 0) {
+                            okLayx.notice({
+                                title: "成功",
+                                type: "success",
+                                message: data["msg"]
+                            });
+                            eTable.reload();
+                        } else if (data["code"] === 300)
+                            okLayx.notice({
+                                title: "错误",
+                                type: "error",
+                                message: data["msg"]
+                            });
+                        else
+                            okLayx.notice({
+                                title: "异常",
+                                type: "error",
+                                message: data["msg"]
+                            });
+                    }
+                });
+                layer.close(index);
+                eTable.reload();
+            })
+        }
+
+        //------------6. 上传excel文件导入
+        upload.render({
+            elem: '#import'
+            , accept: "file"
+            , url: '/importCustom2' //改成上传接口
+            , done: function (res) {
+                if (res.code === 0) {
+
+    okLayx.notice({
+        title: "成功",
+        type: "success",
+        message: res["msg"]
+    });
+ 
+    eTable.reload();
+} 
+else if(res.code===300)
+{
+    okLayx.notice({
+        title: "错误",
+        type: "error",
+        message: res["msg"]
+    });
+    var html="<div style='margin-left: 5%'>";
+    $.each(res["data"],function(index,value){
+        html+="上传文件中，第<b>"+value+"</b>条出现格式或数据错误！</br>"
+    })
+    html+="</div>";
+    layer.tab({
+        area: ['600px', '300px'],
+        tab: [{
+            title: '错误数目',
+            content:res["data"].length
+        }, {
+            title: '错误信息',
+            content:html
+        }]
+    });
+}
+else {
+    okLayx.notice({
+        title: "异常",
+        type: "error",
+        message: res["msg"]
+    });
+
+}
+            }
+        });
+        //------------7. 下载文件模板
+        function download()
+        {
+            window.location="/download2"
+        }
+    })
+</script>
+<!-- 头工具栏模板 -->
+<script type="text/html" id="toolbarTpl">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon">&#xe654;</i> 添加新数据</button>
+        <button class="layui-btn layui-btn-sm layui-btn-warm " id="import" lay-event="import"><i class="ok-icon">&#xe6a0;</i>导入数据
+        </button>
+        <button class="layui-btn layui-btn-sm  layui-btn-normal" id="download" lay-event="download"><i class="ok-icon">&#xe69f;</i>下载模板
+        </button>
+    </div>
+
+</script>
+
+<!-- 行工具栏模板 -->
+<script type="text/html" id="operationTpl" >
+
+        <a  href="javascript:" title="编辑" lay-event="edit"><i class="layui-icon">&#xe642;</i></a>
+        <a  href="javascript:" title="删除" lay-event="del"><i class="layui-icon">&#xe640;</i></a>
+
+
+</script>
+</html>

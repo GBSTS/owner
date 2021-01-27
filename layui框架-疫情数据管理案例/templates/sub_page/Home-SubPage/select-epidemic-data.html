@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>疫情数据列表</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../css/oksub.css">
+    <script type="text/javascript" src="../../lib/echarts/echarts.min.js"></script>
+    <script type="text/javascript" src="../../lib/loading/okLoading.js"></script>
+</head>
+<body class="console console1 ok-body-scroll">
+
+    <!--模糊搜索区域-->
+    <blockquote class="layui-elem-quote"><h3>&nbsp&nbsp疫情数据高级检索</h3></blockquote>
+    <fieldset  class="layui-elem-field">
+        <legend>Tips</legend>
+        <div class="layui-field-box">
+            下拉框支持输入搜索~
+        </div>
+    </fieldset>
+    <form class="layui-form ok-search-form">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <select name="eid" id="eid" lay-filter="eid" lay-search>
+
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <select  lay-filter="province" name="parentid" id="province" lay-search>
+
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <select  name="rid" id="city" lay-search>
+
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <input class=" layui-input" placeholder="日期选择" autocomplete="off" id="date" name="date"/>
+                </div>
+            </div>
+
+
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <button class="layui-btn" lay-submit="" lay-filter="search">
+                        <i class="layui-icon">&#xe615;</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+    <div class="ok-body home">
+        <div class="layui-row layui-col-space15">
+        <div class="layui-col-xs12 layui-col-sm4">
+            <div class="layui-card">
+                <div class="ok-card-body">
+                    <div class="img-box" ok-pc-in-show>
+                        <img src="../../images/quezhen.svg" alt="none"/>
+                    </div>
+                    <div class="cart-r">
+                        <div id="quezhen" class="stat-text incomes-num"> 0</div>
+                        <div class="stat-heading">新增确诊</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-col-xs12 layui-col-sm4">
+            <div class="layui-card ">
+                <div class="ok-card-body">
+                    <div class="img-box" ok-pc-in-show>
+                        <img src="../../images/zhiyu.svg" alt="none"/>
+                    </div>
+                    <div class="cart-r">
+                        <div id="zhiyu" class="stat-text goods-num">0</div>
+                        <div class="stat-heading">新增治愈</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="layui-col-xs12 layui-col-sm4">
+                <div class="layui-card">
+                    <div class="ok-card-body">
+                        <div class="img-box" ok-pc-in-show>
+                            <img src="../../images/siwang.svg" alt="none"/>
+                        </div>
+                        <div class="cart-r">
+                            <div id="siwang" class="stat-text incomes-num">0</div>
+                            <div class="stat-heading">新增死亡</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="layui-col-xs12 layui-col-sm4">
+                <div class="layui-card">
+                    <div class="ok-card-body">
+                        <div class="img-box" ok-pc-in-show>
+                            <img src="../../images/leijiquezhen.svg" alt="none"/>
+                        </div>
+                        <div class="cart-r">
+                            <div id="leijiquezhen" class="stat-text incomes-num">0</div>
+                            <div class="stat-heading">累计确诊</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-xs12 layui-col-sm4">
+                <div class="layui-card">
+                    <div class="ok-card-body">
+                        <div class="img-box" ok-pc-in-show>
+                            <img src="../../images/leijizhiyu.svg" alt="none"/>
+                        </div>
+                        <div class="cart-r">
+
+                            <div  id="leijizhiyu" class="stat-text incomes-num">0</div>
+
+                            <div class="stat-heading">累计治愈</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-xs12 layui-col-sm4">
+                <div class="layui-card">
+                    <div class="ok-card-body">
+                        <div class="img-box" ok-pc-in-show>
+                            <img src="../../images/leijisiwang.svg" alt="none"/>
+                        </div>
+                        <div class="cart-r">
+                            <div id="leijisiwang"  class="stat-text blogs-num">0</div>
+                            <div class="stat-heading">累计死亡</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-xs12 layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        <div class="ok-card-title">最近七次疫情数据</div>
+                    </div>
+                    <div class="ok-card-body map-body">
+                        <div hidden style="height:100%;" id="dataChart"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+<!--js逻辑-->
+<script src="../../lib/layui/layui.js"></script>
+
+</body>
+<script>
+    layui.use(["okUtils", "okCountUp", "form", "jquery", "okLayer",  "laydate", "okLayx", "layer"], function () {
+        let countUp = layui.okCountUp;
+        let form = layui.form;
+        let okLayer = layui.okLayer;
+        let laydate = layui.laydate;
+        let okLayx = layui.okLayx;
+        let layer = layui.layer;
+        let $ = layui.jquery;
+        let okUtils = layui.okUtils;
+        laydate.render(
+            {
+                elem: "#date",
+                type: "date",
+               // value: new Date(),
+                max: 0
+            }
+        );
+        var formData={};
+        var dateList=[]; //最近7天/年数组
+        var dataList=[];//数据按最近7天/年确诊数组、 治愈、 死亡 顺序排列
+        okLoading.close($);
+		//------------1. 查省  将省\直辖市\行政区 放入一个类型为address的List即可
+		    function findProvince()
+            {
+                $.ajax({
+                    url: "/findparentidnull",
+                    async:false,
+                    type: "post",
+                    dataType: "json",
+                    success: function (data) {
+                        if(data["code"]==0)
+                        {
+                            $.each(data["data"],function (index , value) {
+                                $("#province").append("<option value="+value["id"]+">"+value["province"]+"</option>");
+                            })
+
+                            form.render();
+                        }
+                    }
+                });
+            }
+        //    findProvince();
+		      //------------1. 查疫情名称   放回一个疫情信息类的list
+		      $.ajax({
+		          url: "/EpidEname",
+		          type: "post",
+		          dataType: "json",
+                  async:false,
+		          success: function (data) {
+		              if(data["code"]==0)
+		              {
+		                  $.each(data["data"],function (index , value) {
+		                      $("#eid").append("<option value="+value["id"]+">"+value["ename"]+"</option>");
+
+		                  })
+                          if(data["data"][0]["ename"].indexOf("新冠肺炎")==-1)
+                          {
+                              $("#province").append("<option value='83000'>全国</option>")
+                          }
+                          else
+                          {
+                              findProvince();
+                          }
+
+		                  form.render();
+		              }
+		          }
+		      });
+				
+		      //------------2. 查市 将市 放入一个类型为address的List即可
+		      form.on('select(province)', function (data) {
+		          $("#city").children().remove();
+		          $("#city").append("<option value=''>请选择市</option>")
+		          $.ajax({
+		              url: "/findcity",
+		              async:false,
+		              data:{parentid:data.value},//数据为具体省id
+		              type: "post",
+		              dataType: "json",
+		              success: function (data) {
+		                  if(data["code"]==0)
+		                  {
+		                      $.each(data["data"],function (index , value) {
+		                          $("#city").append("<option value="+value["id"]+">"+value["city"]+"</option>");
+		                      })
+		                      form.render();
+		                  }
+		              }
+		          });
+		          form.render();
+		      });
+        form.on('select(eid)', function (data) {
+            var ename=$("select[name='eid']").find("option[value='"+data.value+"']").html();
+            console.log(ename,data);
+            $("#province").children().remove();
+            $("#city").children().remove();
+            $("#province").append("<option value=''>请选择</option>")
+            $("#city").append("<option value=''>请选择市</option>")
+            if(ename.indexOf("新冠肺炎")==-1)
+            {
+                $("#province").append("<option value='83000'>全国</option>")
+
+            }
+            else
+            {
+
+                findProvince();
+
+            }
+            form.render();
+        });
+        form.on("submit(search)", function (data) {
+            if (!($("#dataChart").hasClass("refreshThis"))) {
+                $("#dataChart").addClass("refreshThis");
+                $("#dataChart").show();
+                formData= data.field
+                //1......................................新增 “确诊、治愈、死亡” 累计 “确诊、治愈、死亡” 以及他们相对前一天/年的变化量 详细见url的json文件
+                $.ajax({
+                    url: "/TopEpdata",
+                    data: formData,
+                    async:false,
+                    dataType: "json",
+                    type: "post",
+                    success: function (data) {
+                        if (data["code"] === 0) {
+                          
+
+                            countUPUP("quezhen",data["data"]["ndiagnosis"],data["data"]["ndiagnosis_change"]);
+                            countUPUP("zhiyu",data["data"]["ncure"],data["data"]["ncure_change"]);
+                            countUPUP("siwang",data["data"]["ndeath"],data["data"]["ndeath_change"]);
+
+                            countUPUP("leijiquezhen",data["data"]["cdiagnosis"],data["data"]["cdiagnosis_change"]);
+                            countUPUP("leijizhiyu",data["data"]["ccure"],data["data"]["ccure_change"]);
+                            countUPUP("leijisiwang",data["data"]["cdeath"],data["data"]["cdeath_change"]);
+
+                            //  return data;
+                        } else if (data["code"] === 300) {
+                            okLayx.notice({
+                                title: "错误",
+                                type: "error",
+                                message: data["msg"]
+                            });
+                        } else {
+                            okLayx.notice({
+                                title: "错误",
+                                type: "error",
+                                message: data["msg"]
+                            });
+                        }
+                    }
+                })
+
+                //2......................................最近七天或七年，根据热门疫情判断
+                $.ajax({
+                    url: "/Epdate1",
+                    data: formData,
+                    async:false,
+                    dataType: "json",
+                    type: "post",
+                    success: function (data) {
+                        if (data["code"] === 0) {
+
+                            dateList=data["data"];
+                        } else if (data["code"] === 300) {
+                            okLayx.notice({
+                                title: "错误",
+                                type: "error",
+                                message: data["msg"]
+                            });
+                        } else {
+                            okLayx.notice({
+                                title: "错误",
+                                type: "error",
+                                message: data["msg"]
+                            });
+                        }
+                    }
+                })
+                //3......................................新增 确诊治愈死亡 以及他们前7天/年的新增
+                $.ajax({
+                    url: "/TopEpseven",
+                    data: formData,
+                    dataType: "json",
+                    async:false,
+                    type: "post",
+                    success: function (data) {
+                        if (data["code"] === 0) {
+                            okLayx.notice({
+                                title: "成功",
+                                type: "success",
+                                message: data["msg"]
+                            });
+                            dataList=[];
+                            dataList.push(data["data"][0]);
+                            dataList.push(data["data"][1]);
+                            dataList.push(data["data"][2]);
+
+                        } else if (data["code"] === 300) {
+                            okLayx.notice({
+                                title: "错误",
+                                type: "error",
+                                message: data["msg"]
+                            });
+                        } else {
+                            okLayx.notice({
+                                title: "错误",
+                                type: "error",
+                                message: data["msg"]
+                            });
+                        }
+                    }
+                })
+
+
+
+                var dataChart=echarts.init(document.getElementById('dataChart'));
+                var dataChartOption = {
+
+                    tooltip: {},
+                    legend: {
+                        data:['新增确诊','新增治愈','新增死亡']
+                    },
+                    xAxis: {
+                        data: dateList
+                    },
+                    yAxis: {},
+                    series: [
+                        {
+                            name: '新增确诊',
+                            type: 'line',
+                            data: dataList[0]
+                        },
+
+                        {
+                            name: '新增死亡',
+                            type: 'line',
+                            data: dataList[2]
+                        },
+                        {
+                            name: '新增治愈',
+                            type: 'line',
+                            data: dataList[1]
+                        },
+                    ]
+
+                };
+                dataChart.setOption(dataChartOption);
+                okUtils.echartsResize([dataChart]);
+                setTimeout(function () {
+                    $("#dataChart").removeClass("refreshThis");
+                }, 3000)
+            } else {
+                layer.msg("客官请不要频繁点击哦！我会反应不过来的");
+            }
+
+
+            return false;
+        });
+
+        //----------------------------------------------------------------函数
+
+        function countUPUP(id,endVal,num)
+        {
+
+            var dom= $('#'+id+'');
+            dom.empty();
+            var html="<i class=\"ok-icon\">";//&#xe79c;</i><cite style="font-size: x-small">13</cite>";
+            if(endVal>1000000)
+                endVal=(endVal/10000).toFixed(2)+'万';
+            if(num>=0)
+            {
+                if(num>1000000)
+                    num=(num/10000).toFixed(2)+'万';
+                html+='&#xe79c;</i><cite style="font-size: x-small">'+num+'</cite>';
+            }
+            else
+            {
+                num=-num;
+                if(num>1000000)
+                    num=(num/10000).toFixed(2)+'万';
+                html+='&#xe79b;</i><cite style="font-size: x-small">'+num+'</cite>';
+            }
+            dom.append(endVal+html)
+
+        }
+
+    });
+</script>
+</html>

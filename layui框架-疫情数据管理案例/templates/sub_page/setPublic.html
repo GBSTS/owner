@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>修改密码</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../css/oksub.css">
+    <script type="text/javascript" src="../lib/loading/okLoading.js"></script>
+</head>
+<body class="childrenBody seting-pass">
+<blockquote class="layui-elem-quote"><h3>&nbsp&nbsp系统设置</h3></blockquote>
+<form class="layui-form changePwd">
+    <br>
+    <div class="layui-form-item">
+        <label class="layui-form-label">错误次数</label>
+        <div class="layui-input-block">
+            <input type="text" name="wrong" placeholder="请输入账号登录几次后被限制" lay-verify="numberPlus"
+                   class="layui-input">
+        </div>
+    </div>
+    <br>
+    <div class="layui-form-item">
+        <label class="layui-form-label">存活秒数</label>
+        <div class="layui-input-block">
+            <input type="text" name="livetime" placeholder="请输入账号无操作情况下的存活时间，单位秒" lay-verify="live"
+                   class="layui-input">
+        </div>
+    </div>
+    <br>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+        <legend>高级设置</legend>
+    </fieldset>
+    <fieldset  class="layui-elem-field">
+        <legend>Tips</legend>
+        <div class="layui-field-box">
+            此按钮非特殊情况请不要轻易尝试，点击后系统将会恢复到初始状态，所有数据将<b>不可恢复</b>！
+        </div>
+    </fieldset>
+    <div class="layui-form-item"  >
+        <div class="layui-input-block">
+
+            <button type="button" id="reset" class="layui-btn layui-btn-lg layui-btn-danger ">初始化系统</button>
+        </div>
+    </div>
+    <br>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+        <legend>其他设置</legend>
+    </fieldset>
+    <br>
+    <div class="layui-form-item">
+        <label class="layui-form-label">最后登录</label>
+        <div class="layui-input-block">
+            <input type="text" id="lastLogin"
+                   class="layui-input" disabled>
+        </div>
+    </div>
+    <br>
+    <div class="layui-form-item">
+        <label class="layui-form-label">热门疫情</label>
+        <div class="layui-input-block">
+            <select name="eid" id="eid" lay-search>
+            </select>
+        </div>
+    </div>
+    <br>
+
+
+    <div class="layui-form-item"  >
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="set">修改设置</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript" src="../lib/layui/layui.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/allAjax.js"></script>
+<script type="text/javascript">
+    layui.use(['form', 'layer', 'jquery', 'okLayx'], function () {
+        var form = layui.form,
+            layer = layui.layer,
+            $ = layui.jquery,
+            okLayx = layui.okLayx;
+        $form = $('form');
+        okLoading.close();
+        //------------1. 查疫情名称   放回一个疫情信息类的list
+        $.ajax({
+            url: "/EpidEname",
+            type: "post",
+            dataType: "json",
+            success: function (data) {
+                if(data["code"]==0)
+                {
+                    $.each(data["data"],function (index , value) {
+                        $("#eid").append("<option value="+value["id"]+">"+value["ename"]+"</option>");
+                    })
+                    form.render();
+                }
+            }
+        });
+        //------------2. 查系统设置表内容
+        $.ajax({
+            url: "/SettingAll",
+            type: "post",
+            dataType: "json",
+            success: function (data) {
+                if(data["code"]==0)
+                {
+                    $("input[name='wrong']").val(data["data"]["wrong"]);
+                    $("input[name='livetime']").val(data["data"]["livetime"]);
+                    $("#lastLogin").val(data["data"]["datetime"]);
+                    setSelect('eid',data["data"]["eid"]);
+                }
+            }
+        });
+        function setSelect(type,data)
+        {
+
+            var options= $("select[name='"+type+"']").find("option")
+            $.each(options,function (index,value) {
+                if( $(value).val()==data)
+                {
+                    $(value).attr("selected",true);
+                    return false
+                }
+            })
+                form.render();
+        }
+        form.verify({
+            numberPlus: function (value, item) {
+                var re =  /^[0-9]\d*$/;
+
+                if (!new RegExp(re).test(value)) {
+                    return '只能填写正整数';
+                }
+            },
+            live: function (value, item) {
+                var re =  /^[1-9]\d*$/;
+                if (!new RegExp(re).test(value)) {
+                    return '只能填写大于200正整数';
+                }
+                if(value<200)
+                {
+                    return '只能填写大于200正整数';
+                }
+            }
+
+        });
+        $("#reset").on('click',function () {
+            layer.confirm("确定要初始化系统吗？", function (index) {
+                    layer.confirm("请再次确认", function (index2) {
+                        $.ajax({
+                            url: "/Resetting",
+                            type: "post",
+                            dataType: "json",
+                            success: function (data) {
+
+                                if (data["code"] === 0) {
+
+                                    okLayx.notice({
+                                        title: "成功",
+                                        type: "success",
+                                        message: data["msg"]
+                                    });
+                                    location.href = "../login.html";
+
+                                } else if (data["code"] === 300)
+                                    okLayx.notice({
+                                        title: "错误",
+                                        type: "error",
+                                        message: data["msg"]
+                                    });
+                                else
+                                    okLayx.notice({
+                                        title: "异常",
+                                        type: "error",
+                                        message: data["msg"]
+                                    });
+                            }
+                        });
+                        layer.close(index2);
+                    });
+                layer.close(index);
+                });
+
+            })
+
+
+        // -----------设置完成 1、wrong 错误次数 2 livetime session的存活时长 3、eid 热门疫情设置
+        form.on("submit(set)", function (data) {
+
+            $.ajax({
+                url: "/Setting",
+                data: data.field,
+                type: "post",
+                dataType: "json",
+                success: function (data) {
+
+                    if (data["code"] === 0) {
+
+                        okLayx.notice({
+                            title: "成功",
+                            type: "success",
+                            message: data["msg"]
+                        });
+
+
+                    } else if (data["code"] === 300)
+                        okLayx.notice({
+                            title: "错误",
+                            type: "error",
+                            message: data["msg"]
+                        });
+                    else
+                        okLayx.notice({
+                            title: "异常",
+                            type: "error",
+                            message: data["msg"]
+                        });
+                }
+            });
+            return false;
+        });
+    });
+
+
+</script>
+</body>
+</html>

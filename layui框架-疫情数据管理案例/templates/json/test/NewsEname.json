@@ -1,0 +1,13 @@
+{
+  "code": 0,
+  "msg": "success",
+  "data":[
+   {"id": 27, "ename": "test6", "pscience": null},
+   {"id": 8, "ename": "乙肝", "pscience": null},
+   {"id": 9, "ename": "新冠肺炎", "pscience": null},
+   {"id": 10, "ename": "狂犬病", "pscience": null},
+   {"id": 1, "ename": "艾滋病", "pscience": null},
+   {"id": 21, "ename": "钩虫病", "pscience": null}
+  ],
+  "count": 10
+}

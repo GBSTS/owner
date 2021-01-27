@@ -1,0 +1,28 @@
+{
+  "code": 0,
+  "msg": "success",
+  "data":[
+    {"id": "4401", "city": "广州市", "parentid": null, "province": null},
+    {"id": "4402", "city": "韶关市", "parentid": null, "province": null},
+    {"id": "4403", "city": "深圳市", "parentid": null, "province": null},
+    {"id": "4404", "city": "珠海市", "parentid": null, "province": null},
+    {"id": "4405", "city": "汕头市", "parentid": null, "province": null},
+    {"id": "4406", "city": "佛山市", "parentid": null, "province": null},
+    {"id": "4407", "city": "江门市", "parentid": null, "province": null},
+    {"id": "4408", "city": "湛江市", "parentid": null, "province": null},
+    {"id": "4409", "city": "茂名市", "parentid": null, "province": null},
+    {"id": "4412", "city": "肇庆市", "parentid": null, "province": null},
+    {"id": "4413", "city": "惠州市", "parentid": null, "province": null},
+    {"id": "4414", "city": "梅州市", "parentid": null, "province": null},
+    {"id": "4415", "city": "汕尾市", "parentid": null, "province": null},
+    {"id": "4416", "city": "河源市", "parentid": null, "province": null},
+    {"id": "4417", "city": "阳江市", "parentid": null, "province": null},
+    {"id": "4418", "city": "清远市", "parentid": null, "province": null},
+    {"id": "4419", "city": "东莞市", "parentid": null, "province": null},
+    {"id": "4420", "city": "中山市", "parentid": null, "province": null},
+    {"id": "4451", "city": "潮州市", "parentid": null, "province": null},
+    {"id": "4452", "city": "揭阳市", "parentid": null, "province": null},
+    {"id": "4453", "city": "云浮市", "parentid": null, "province": null}
+  ],
+  "count": 10
+}

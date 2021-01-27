@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>系统日志</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../css/oksub.css">
+    <script type="text/javascript" src="../../lib/loading/okLoading.js"></script>
+</head>
+<body>
+<div class="ok-body">
+    <!--模糊搜索区域-->
+    <blockquote class="layui-elem-quote"><h3>&nbsp&nbsp日志数据检索</h3></blockquote>
+    <fieldset  class="layui-elem-field">
+        <legend>Tips</legend>
+        <div class="layui-field-box">
+            -&nbsp;下拉框支持搜索~<br/><br/>
+            -&nbsp;具体时分秒的选择在日历弹出层的<b style="color: #0e90d2">左下角</b>~<br/><br/>
+            -&nbsp;检索栏的大致描述：可以输入被操作数据的某些文字，<b style="color: #0e90d2">例如:新冠肺炎、广东省等</b>，越简短的文字可能得到越多的结果~
+        </div>
+    </fieldset>
+    <form class="layui-form ok-search-form">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <input class=" layui-input" placeholder="管理员账号" autocomplete="off" name="account"/>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <select name="operating"  lay-search>
+                        <option value="">数据操作</option>
+                        <option value="0">新增</option>
+                        <option value="1">修改</option>
+                        <option value="2">删除</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <select name="object" id="object" lay-search>
+                        <option value="">数据对象</option>
+                        <option value="0">疫情信息</option>
+                        <option value="1">疫情数据</option>
+                        <option value="2">疫情资讯</option>
+                        <option value="3">管理员</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <input  class=" layui-input" placeholder="最小日期时间" autocomplete="off" id="datemin" name="datemin"/>
+
+                </div>
+            </div>
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <input class=" layui-input" placeholder="最大日期时间" autocomplete="off" id="datemax" name="datemax"/>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <input class=" layui-input" placeholder="大致描述" autocomplete="off" id="description" name="description"/>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <button class="layui-btn" lay-submit="" lay-filter="search">
+                        <i class="layui-icon">&#xe615;</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!--数据表格-->
+    <br><br>
+    <blockquote class="layui-elem-quote"><h3>&nbsp&nbsp数据日志</h3></blockquote>
+    <table class="layui-hide" id="tableId" lay-filter="tableFilter"></table>
+</div>
+<!--js逻辑-->
+<script src="../../lib/layui/layui.js"></script>
+
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/allAjax.js"></script>
+</body>
+<script>
+    layui.use(["okTab", "table", "form", "jquery", "layer", "laydate",  "okLayx", "upload"], function () {
+        let table = layui.table;
+        let form = layui.form;
+        let layer = layui.layer;
+        let laydate = layui.laydate;
+        let okLayx = layui.okLayx;
+        let upload = layui.upload;
+        let $ = layui.jquery;
+        let okTab = layui.okTab();
+        laydate.render(
+            {
+                elem: "#datemax",
+                type: "datetime",
+            }
+
+        );
+        laydate.render(
+            {
+                elem: "#datemin",
+                type: "datetime",
+            }
+
+        );
+        okLoading.close($);
+
+
+        //------------3. 后台返回LayuiMap 额外返回ename、province、city
+        let eTable = table.render({
+            elem: '#tableId',
+            url: '/Log',
+            
+            limit: 20,
+            limits: [10, 20, 30, 40, 50, 60, 70, 80, 90, 10000000],
+            skin: 'row', //行边框风格
+            even: true,//开启隔行背景
+            page: true,
+            //toolbar: true,
+            toolbar: "#toolbarTpl",
+            //  height: 'full-100',
+            size: "sm",
+            cols: [[
+                // {type: "checkbox", fixed: "left"},
+                {field: "id", hide:true, title: "ID", width: 60, sort: true, fixed: "left"},
+                {field: "account", title: "账号", width: 160},
+                {field: "datetime", title: "时间", width: 160},
+                {field: "operating", title: "数据操作", width: 120
+                    , templet: '#operating'
+                },
+                {field: "object", title: "数据对象", width: 120
+                    , templet: function (d) {
+                        if (d.object=='0')
+                            return '疫情信息';
+                       else if (d.object=='1')
+                            return '疫情数据';
+                        else if (d.object=='2')
+                            return '疫情资讯';
+                        else if (d.object=='3')
+                            return '管理员';
+                    }
+                },
+                {field: "description", title: "描述"},
+
+            ]],
+            done:function()
+            {
+                $("option[value='10000000']").html("全部");
+            }
+        });
+
+        //------------4. 搜索须知：
+        // a 日期区间放在date字段用“ - ”连接 例如1010-02-02 - 1010-03-03
+        // b 直接传送省id、市id，放入province和city字段
+        // c 疫情名字传id 放在 eid
+        form.on("submit(search)", function (data) {
+            if (!($("#tableId").hasClass("refreshThis"))) {
+                $("#tableId").addClass("refreshThis");
+                eTable.reload({
+                    where: data.field,
+                    page: {curr: 1}
+                });
+                okLayx.notice({
+                    title: "成功",
+                    type: "success",
+                    message: "检索数据完成"
+                });
+                setTimeout(function () {
+                    $("#tableId").removeClass("refreshThis");
+                }, 3000)
+            } else {
+                layer.msg("客官请不要频繁点击哦！我会反应不过来的");
+            }
+
+            return false;
+        });
+
+
+
+
+    })
+</script>
+<script type="text/html" id="operating">
+    {{#  if(d.operating == "1"){ }}
+    <span class="layui-btn-warm layui-btn layui-btn-xs">修改</span>
+    {{#  } else if(d.operating == "0") { }}
+    <span class="layui-btn layui-btn layui-btn-xs">增加</span>
+    {{#  }  else if(d.operating == "2") {}}
+    <span class="layui-btn layui-btn-danger layui-btn-xs">删除</span>
+    {{#  } }}
+</script>
+</html>

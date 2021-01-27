@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>疫情情报局</title>
+    <link rel="shortcut icon" href="images/疫情大数据.svg" type="image/x-icon"/>
+    <base target="_blank">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="css/oksub.css">
+    <script type="text/javascript" src="lib/loading/okLoading.js"></script>
+    <link rel="stylesheet" href="css/bg.css">
+</head>
+<body    class="ok-body-scroll console">
+
+<div   class="web_bg"  style="background-image: url('images/login-bg.jpg');">
+
+</div>
+<div class="ok-body home "  >
+    <h1 style="margin-left: 2%;">
+        <img style="margin-left: 5%" src="images/疫情大数据.svg" width="80">
+        <b style="margin-left: 5%;color: #ffffff">疫情情报局</b>
+
+    </h1>
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-xs12 layui-col-md10 layui-col-md-offset1">
+            <div class="layui-card">
+                <div class="ok-card-body ">
+                    <div class="layui-card-header">
+                        <h2> <b>焦点关注</b></h2>
+                    </div>
+                    <div class="layui-carousel"  lay-filter="lunbo" id="lunbo">
+                        <div id="bo" carousel-item>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-xs12 layui-col-md10 layui-col-md-offset1">
+            <div class="layui-card">
+
+                <div class="ok-card-body ">
+                    <div class="layui-card-header">
+                        <h2> <b>疫情数据</b></h2>
+                    </div>
+                    <div class="layui-tab layui-tab-brief" lay-filter="tabBrief">
+                        <ul class="layui-tab-title">
+                            <li style="width: 20%" class="layui-this">当前热门</li>
+                            <li style="width: 20%" >本地疫情</li>
+                            <li style="width: 20%"  >疫情统计</li>
+                            <li style="width: 20%" >疫情科普</li>
+
+                        </ul>
+                        <div  class="layui-tab-content">
+                            <div class="layui-tab-item layui-show" style="height: 720px">
+                                <iframe frameborder="0" style="width: 100%; height: 100%" src="sub_page/Home-SubPage/hot-epidemic-data.html" ></iframe>
+                            </div>
+                            <div class="layui-tab-item" style="height: 720px">
+
+
+                            </div>
+                            <div class="layui-tab-item " style="height: 860px">
+
+
+                            </div>
+                            <div class="layui-tab-item" style="height: 900px">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<!--<div align="center" id="btn">-->
+<!--    <br>-->
+<!--    <button  class="layui-btn layui-btn-primary">换一换</button>-->
+<!--    <br/>-->
+<!--    <br/>-->
+<!--</div>-->
+<script src="lib/layui/layui.js"></script>
+<script>
+    layui.use(["okTab", "element", "form", "jquery", "okLayer", "laydate", "carousel", "okLayx", "layer"], function () {
+            let element = layui.element;
+            let form = layui.form;
+            let okLayer = layui.okLayer;
+            let laydate = layui.laydate;
+            let okLayx = layui.okLayx;
+            let layer = layui.layer;
+            let $ = layui.jquery;
+            let okTab = layui.okTab();
+            okLoading.close($);
+        var carousel = layui.carousel;
+
+        var index=0;//记录tab标签位置
+        var count=0;//记录轮播切换次数
+        news();//设置10条热门资讯
+        //建造实例
+        var option={
+            elem: '#lunbo'
+            ,width: '100%' //设置容器宽度
+            //  ,height: '10%'
+            ,arrow: 'always' //始终显示箭头
+            //   ,anim: 'updown' //切换动画方式
+          ,indicator:'none'
+        };
+        var lunbo=  carousel.render(option);
+        element.on('tab(tabBrief)', function(data){
+            //console.log(data.index);
+            $(".layui-tab-item").eq(index).empty();
+            index=data.index;
+            if(index==1)
+                $(".layui-tab-item").eq(index).append(" <iframe frameborder=\"0\" style=\"width: 100%;height:100%\" src=\"sub_page/Home-SubPage/address-epidemic.html\" ></iframe>")
+            else if(index==2)
+                $(".layui-tab-item").eq(index).append("<iframe frameborder=\"0\"  style=\"width: 100%;height:100%;\" src=\"sub_page/Home-SubPage/select-epidemic-data.html\" ></iframe>")
+            else if(index==3)
+                $(".layui-tab-item").eq(index).append("<iframe frameborder=\"0\" style=\"width: 100%;height:100%\" src=\"sub_page/Home-SubPage/kepu-epidemic.html\" ></iframe>")
+            else if(index==0)
+                $(".layui-tab-item").eq(index).append("<iframe frameborder=\"0\" style=\"width: 100%;height:100%\" src=\"sub_page/Home-SubPage/hot-epidemic-data.html\" ></iframe>\n")
+        });
+
+        carousel.on('change(lunbo)', function(obj){ //test1来源于对应HTML容器的 lay-filter="test1" 属性值
+        if(count===8)
+        {
+            count=0;
+            news();
+
+        }
+        count++;
+
+        });
+        // //---------------------1. 使用算法选出资讯
+        function news()
+        {
+            $.ajax({
+                url:"/Newshome",
+                data:{inc:10},//点下一跳轮播，一次请求10条新的加入
+                dataType:"json",
+                aysnc:false,
+                type:"post",
+                success:function (data) {
+                    if (data["code"] === 0) {
+
+                        $.each(data["data"],function (index,value) {
+                            $("#bo").append(
+                                " <div style=\"text-align: center\" >\n" +
+                                "                                <a href=\""+value['url']+"\">\n" +
+                                "                                <img style=\"width:auto;height:auto;\" src=\"images/news-bg.jpg\">\n" +
+                                "                                <div style=\"position:absolute;width:100%;height:20%;z-indent:2;bottom:45%;\">\n" +
+                                "                                   <h1 style=\"color: #ffffff\"> <b>"+value["title"]+"</b></h1>\n" +
+                                "                                </div>\n" +
+                                "                                </a>\n" +
+                                "                            </div>"
+                            );
+                        })
+                        lunbo.reload(option);
+                    } else if (data["code"] === 300) {
+                        okLayx.notice({
+                            title: "错误",
+                            type: "error",
+                            message: data["msg"]
+                        });
+                    }
+                    else
+                    {
+                        okLayx.notice({
+                            title: "错误",
+                            type: "error",
+                            message: data["msg"]
+                        });
+                    }
+                }
+            });
+
+        }
+
+    });
+    </script>
+</html>

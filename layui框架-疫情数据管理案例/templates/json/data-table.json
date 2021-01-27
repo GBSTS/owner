@@ -1,0 +1,51 @@
+{
+  "code": 0,
+  "msg": "success",
+  "data":[ {
+    "id": 1243124,
+    "eid": 1,
+    "ename": "新冠肺炎",
+    "rid": 1,
+    "province":"广东省",
+    "city":"惠州市",
+    "date": "2020-04-02",
+    "ndiagnosis": 10000,
+    "ndeath": 1000,
+    "ncure": 10000,
+    "cdiagnosis": 1546454,
+    "cdeath": 16408564,
+    "ccure": 49844584
+  },
+    {
+      "id": 1,
+      "eid": 1,
+      "ename": "新冠肺炎",
+      "rid": 1,
+      "province":"北京市",
+      "city":"",
+      "date": "2020-04-02",
+      "ndiagnosis": 10000,
+      "ndeath": 1000,
+      "ncure": 10000000,
+      "cdiagnosis": 10000000,
+      "cdeath": 1000000,
+      "ccure": 100000000
+    },
+    {
+      "id": 1123,
+      "eid": 1,
+      "ename": "新冠肺炎",
+      "rid": 1,
+      "province":"香港特别行政区",
+      "city":null,
+      "date": "2020-04-02",
+      "ndiagnosis": 10000,
+      "ndeath": 1000,
+      "ncure": 10000000,
+      "cdiagnosis": 10000000,
+      "cdeath": 1000000,
+      "ccure": 100000000
+    }
+  ],
+  "count": 10
+}

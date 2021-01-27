@@ -1,0 +1,20 @@
+{
+  "code": 0,
+  "msg": "success",
+  "data":
+  [
+    {"ccure": 0,
+      "cdeath": 0,
+      "cdiagnosis": 0,
+      "date": "2020-04-27",
+      "eid": 1,
+      "id": 0,
+      "ncure": 10000,
+      "ndeath": 1000,
+      "ndiagnosis": 10000,
+      "parentid": "4400",
+      "rid": 4406
+    }
+  ],
+  "count": 10
+}

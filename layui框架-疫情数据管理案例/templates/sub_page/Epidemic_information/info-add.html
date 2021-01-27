@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>疫情信息添加</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../css/oksub.css">
+    <script type="text/javascript" src="../../lib/loading/okLoading.js"></script>
+</head>
+<body class="ok-body">
+<blockquote class="layui-elem-quote">添加疫情信息</blockquote>
+<div class="layui-row">
+    <div class="layui-col-xs12 layui-col-md-offset1 layui-col-sm12 layui-col-md6">
+        <form class="layui-form layui-form-pane ok-form">
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">疫情名称<span style="color:red">*</span></label>
+                <div class="layui-input-block">
+                    <input type="text" name="ename"  placeholder="请输入疫情名称" autocomplete="off"
+                           class="layui-input"
+                           lay-verify="required" >
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">科普内容<span style="color:red">*</span></label>
+                <div class="layui-input-block">
+                    <textarea style="height: 350px" name="pscience" placeholder="请输入内容" class="layui-textarea" lay-verify="required"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="add">确认修改</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+<script src="../../lib/layui/layui.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/allAjax.js"></script>
+<script>
+    layui.use(["element", "form", "laydate", "okLayer", "okUtils", "jquery", "okLayx"], function () {
+        let form = layui.form;
+        let laydate = layui.laydate;
+        let okLayer = layui.okLayer;
+        let okUtils = layui.okUtils;
+        let okLayx = layui.okLayx;
+        let $ = layui.jquery;
+        okLoading.close();
+        //------------1.确认添加，后台插入到数据库的连接
+        form.on("submit(add)", function (data) {
+            $.ajax({
+                url: "/Epidadd",
+                data: data.field,
+                type: "post",
+                dataType: "json",
+                success: function (data) {
+
+                    if (data["code"] === 0) {
+                        $("select,input,textarea,button").addClass("layui-disabled");
+                        form.render();
+                        okLayx.notice({
+                            title: "成功",
+                            type: "success",
+                            message: data["msg"]
+                        });
+                        setTimeout(function () {
+                            parent.layer.close(parent.layer.getFrameIndex(window.name))
+                        }, 3000);
+
+
+                    } else if (data["code"] === 300)
+                        okLayx.notice({
+                            title: "错误",
+                            type: "error",
+                            message: data["msg"]
+                        });
+                    else
+                        okLayx.notice({
+                            title: "异常",
+                            type: "error",
+                            message: data["msg"]
+                        });
+                }
+            });
+            return false;
+        });
+    });
+</script>
+</html>

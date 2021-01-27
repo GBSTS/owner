@@ -1,0 +1,19 @@
+{
+  "code": 0,
+  "msg": "success",
+  "data":{
+    "ndiagnosis": 123,
+    "ncure": 321,
+    "ndeath": 13212323,
+    "cdiagnosis": 123,
+    "ccure": 321,
+    "cdeath": 13212323,
+    "ndiagnosis_change": 123,
+    "ncure_change": -321,
+    "ndeath_change": 13212323,
+    "cdiagnosis_change": -123,
+    "ccure_change": 321,
+    "cdeath_change": -13212323
+  },
+  "count": 10
+}
